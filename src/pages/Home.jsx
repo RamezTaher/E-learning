@@ -1,10 +1,16 @@
 import React from "react"
-import Layout from "../components/Layout"
+import Footer from "../components/footer"
+import Header from "../components/Header"
+import Hero from "../components/Hero"
 
 const Home = () => {
   return (
     <>
-      <Layout>ramre</Layout>
+      <Header />
+      <section>
+        <Hero />
+      </section>
+      <Footer />
     </>
   )
 }

@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#993365",
-        "primary-tint": "#FAF4F7",
-        secondary: "#FAF4F7",
+        primary: "#07a3e9",
+        "primary-tint": "#A9E7F4",
+        secondary: "#303135",
         "secondary-tint": "#FAFAFA",
         "dark-shade": "#263238",
         dark: "#404040",
@@ -25,7 +25,7 @@ module.exports = {
         success: "#00800A",
       },
       fontFamily: {
-        kufi: ["Noto Kufi Arabic", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       boxShadow: {
         "t-sm": "0 -1px 2px 0 rgb(0 0 0 / 0.05)",

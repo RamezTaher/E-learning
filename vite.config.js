@@ -12,7 +12,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": "/src/assets/",
+      "@": "/src/assets/img/",
     },
   },
 
