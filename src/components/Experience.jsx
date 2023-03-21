@@ -22,8 +22,6 @@ const Experience = () => {
           <Card img={exp1} title={"Inventiveness"} className="col-span-1" />
           <Card img={exp1} title={"Inventiveness"} className="col-span-1" />
         </div>
-
-        
       </div>
     </div>
   )

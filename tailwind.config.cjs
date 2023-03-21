@@ -19,7 +19,7 @@ module.exports = {
         dark: "#404040",
         "dark-tint": "#BEBEBE",
         "dark-dates": "#979797",
-        grayish: "#F4F4F4",
+        grayish: "#E5E5E5",
         danger: "#D11317",
         warning: "#F6B12D",
         success: "#00800A",
