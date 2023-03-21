@@ -6,7 +6,7 @@ const Card = ({ img, title }) => {
       <div className="w-15">
         <img src={img} alt="way" />
       </div>
-      <h1 className="text-secondary text-xl font-[900]">{title}</h1>
+      <h1 className="text-secondary text-xl font-[800]">{title}</h1>
       <p className="text-secondary-tint text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex harum
         quisquam soluta, in explicabo quidem!
