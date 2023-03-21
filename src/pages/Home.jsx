@@ -1,7 +1,7 @@
 import React from "react"
 import Experience from "../components/Experience"
 import FeedBacks from "../components/FeedBacks"
-import Footer from "../components/footer"
+import Foot from "../components/Foot"
 import Guide from "../components/Guide"
 import Header from "../components/Header"
 import Hero from "../components/Hero"
@@ -26,7 +26,7 @@ const Home = () => {
       <section className="py-20">
         <FeedBacks />
       </section>
-      <Footer />
+      <Foot />
     </>
   )
 }
