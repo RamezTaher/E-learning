@@ -19,7 +19,7 @@ module.exports = {
         dark: "#404040",
         "dark-tint": "#BEBEBE",
         "dark-dates": "#979797",
-        grayish: "#E5E5E5",
+        grayish: "#8D8D8D",
         danger: "#D11317",
         warning: "#F6B12D",
         success: "#00800A",
@@ -174,8 +174,8 @@ module.exports = {
       "gradient-to-l": "linear-gradient(to left, var(--tw-gradient-stops))",
       "gradient-to-tl":
         "linear-gradient(to top left, var(--tw-gradient-stops))",
-      "hero-pattern":
-        "linear-gradient(to right bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/photos/banner.png')",
+      "auth-cover":
+        "linear-gradient(to right bottom, rgba(7,163,233,0.9), rgba(7,163,233,0.9)), url('/src/assets/img/authCover.jpg')",
     },
     backgroundOpacity: ({ theme }) => theme("opacity"),
     backgroundPosition: {

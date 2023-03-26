@@ -6,7 +6,7 @@ const Header = () => {
   const navigation = useNavigate()
   const goToAuth = (e) => {
     e.preventDefault()
-    navigation("auth")
+    navigation("/auth/register")
   }
   return (
     <header className="text-sm">

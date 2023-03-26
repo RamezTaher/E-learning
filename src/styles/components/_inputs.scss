@@ -11,5 +11,13 @@ input[type="number"] {
 }
 input,
 textarea {
-  @apply w-full text-sm outline-none bg-white placeholder-dark py-3 px-4 bg-transparent border border-solid border-dark rounded-3xl;
+  @apply w-full text-sm outline-none bg-white placeholder-grayish p-5  bg-transparent border border-solid border-grayish rounded-md;
+
+  &:focus {
+    @apply border-primary;
+  }
+}
+
+label {
+  @apply text-secondary text-[14px] flex flex-col gap-1;
 }
