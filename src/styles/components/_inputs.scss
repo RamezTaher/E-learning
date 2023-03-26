@@ -9,6 +9,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
 input,
 textarea {
   @apply w-full text-sm outline-none bg-white placeholder-grayish p-5  bg-transparent border border-solid border-grayish rounded-md;
