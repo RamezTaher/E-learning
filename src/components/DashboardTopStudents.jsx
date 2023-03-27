@@ -4,7 +4,7 @@ import Student from "./Student"
 const DashboardTopStudents = () => {
   return (
     <div>
-      <h1 className="text-4xl font-[600] mb-6 text-secondary">Top Students</h1>
+      <h1 className="text-3xl font-[600] mb-6 text-secondary">Top Students</h1>
       <div className="grid grid-cols-2 gap-6">
         <div className="col-span-1">
           <Student />
