@@ -21,6 +21,12 @@ const SignUp = () => {
           </div>
         </div>
         <div className="container px-6 sm:mx-auto lg:px-10 py-3  w-[60%] h-full">
+          <div className="text-grayish text-right mb-5">
+            You have an account ?{" "}
+            <Link to="/auth/login">
+              <span className="text-primary">Sign In</span>
+            </Link>
+          </div>
           <div className="h-full  flex flex-col gap-16">
             <div className="flex justify-between items-start">
               <Link className="text-[#6D6D6D] flex items-center gap-1" to={"/"}>

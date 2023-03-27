@@ -4,7 +4,7 @@ import DashboardCoursesTableRow from "./DashboardCoursesTableRow"
 const DashboardCourses = () => {
   return (
     <div className="rounded-lg shadow-sm">
-      <h1 className="text-3xl font-[600] mb-4 text-secondary">My Courses</h1>
+      <h1 className="text-2xl font-[600] mb-4 text-secondary">My Courses</h1>
       <table className="w-full border-spacing-y-[10px]  border-separate">
         <thead>
           <tr className=" text-lg font-[500] text-secondary">

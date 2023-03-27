@@ -9,7 +9,7 @@ const DashboardHomework = () => {
   }
   return (
     <div>
-      <h1 className="text-3xl font-[600] mb-4 text-secondary">
+      <h1 className="text-2xl font-[600] mb-4 text-secondary">
         Homework progreee
       </h1>
       <div className="flex flex-col gap-2 p-2">

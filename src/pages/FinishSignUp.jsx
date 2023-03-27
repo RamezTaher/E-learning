@@ -26,7 +26,7 @@ const FinishSignUp = () => {
             <div className="flex justify-between items-start">
               <Link
                 className="text-[#6D6D6D] flex items-center gap-1"
-                to={"/register"}
+                to={"/auth/register"}
               >
                 <IoIosArrowBack />
                 Back
