@@ -1,8 +1,15 @@
-import React from 'react'
+import React from "react"
+import DashboardPanel from "../components/DashboardPanel"
+import SideBar from "../components/SideBar"
 
 const UserDashboard = () => {
   return (
-    <div>UserDashboard</div>
+    <>
+      <section className="flex">
+        <SideBar />
+        <DashboardPanel />
+      </section>
+    </>
   )
 }
 
