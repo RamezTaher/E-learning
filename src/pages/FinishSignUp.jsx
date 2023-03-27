@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom"
 import { IoIosArrowBack } from "react-icons/io"
 
 const FinishSignUp = () => {
+  const navigate = useNavigate()
   const register = () => {
     alert("register done")
+    navigate("/platform/dashboard")
   }
   return (
     <>

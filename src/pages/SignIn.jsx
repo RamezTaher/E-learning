@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import googleIcon from "@/icons/google.svg"
 import githubIcon from "@/icons/github.svg"
@@ -7,6 +7,10 @@ import linkedinIcon from "@/icons/linkedin.svg"
 
 const SignIn = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const navigate = useNavigate()
+  const onSignIn = () => {
+    navigate("/platform/dashboard")
+  }
   return (
     <>
       <section className="flex h-[100vh]">
@@ -61,7 +65,10 @@ const SignIn = () => {
                 </span>
               </label>
 
-              <button className="btn btn-primary py-5 text-lg font-normal rounded-lg">
+              <button
+                className="btn btn-primary py-5 text-lg font-normal rounded-lg"
+                onClick={() => onSignIn()}
+              >
                 Login
               </button>
             </form>
