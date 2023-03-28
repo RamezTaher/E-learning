@@ -26,7 +26,7 @@ const SideBar = () => {
         <Link to={"/platform/courses"}>
           <div
             className={`flex items-center gap-2 text-lg py-2 justify-center rounded-md hover:bg-primary hover:text-white transition-all ${
-              pathname === "/platform/courses"
+              pathname.split("/")[2] === "courses"
                 ? "bg-primary text-white"
                 : "text-secondary"
             }`}
