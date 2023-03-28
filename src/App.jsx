@@ -3,6 +3,7 @@ import FinishSignUp from "./pages/FinishSignUp"
 import Home from "./pages/Home"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
+import UserCourses from "./pages/UserCourses"
 import UserDashboard from "./pages/UserDashboard"
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/auth/register" element={<SignUp />} />
         <Route path="/auth/finish-register" element={<FinishSignUp />} />
         <Route path="/platform/dashboard" element={<UserDashboard />} />
+        <Route path="/platform/courses" element={<UserCourses />} />
       </Routes>
     </>
   )
