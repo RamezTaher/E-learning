@@ -1,6 +1,7 @@
 import React from "react"
 import logo from "@/logo.svg"
 import { Link } from "react-router-dom"
+import Logo from "./Logo"
 const Foot = () => {
   return (
     <footer className="bg-primary-tint">
@@ -9,13 +10,13 @@ const Foot = () => {
           <div className="grid grid-cols-7">
             <div className="col-span-3 flex items-center gap-12">
               <div className="w-[200px]">
-                <img src={logo} alt="logo" />
+                <Logo />
               </div>
 
               <div className="flex flex-col gap-5">
                 <h1 className="text-secondary">E-Learning</h1>
                 <p>Educational Service that help you learn</p>
-                <Link to="/auth">
+                <Link to="/auth/register">
                   <div className="text-secondary font-bold underline text-lg">
                     Become a member
                   </div>

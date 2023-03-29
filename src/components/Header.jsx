@@ -1,6 +1,7 @@
 import React from "react"
 import logo from "@/logo.svg"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import Logo from "./Logo"
 const Header = () => {
   const { pathname } = useLocation()
   const navigation = useNavigate()
@@ -11,9 +12,9 @@ const Header = () => {
   return (
     <header className="text-sm">
       <div className="container px-6 sm:mx-auto relative  lg:px-10 py-3 flex items-center justify-between">
-        <div className="cursor-pointer">
-          <img src={logo} alt="logo" className="w-32" />
-        </div>
+        <Link to={"/"}>
+          <Logo />
+        </Link>
         <nav className="flex items-center gap-10">
           <Link to={"/"}>
             <div

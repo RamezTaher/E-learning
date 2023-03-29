@@ -9,7 +9,7 @@ const SideBar = () => {
   const { pathname } = useLocation()
   return (
     <div className="flex flex-col gap-10 fixed top-0 left-0  w-[260px] h-full py-10 px-4 ">
-      <Logo size={40} />
+      <Logo />
       <nav className="flex flex-col  gap-2">
         <Link to={"/platform/dashboard"}>
           <div
