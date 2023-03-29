@@ -1,6 +1,6 @@
+import React from "react"
 import { Collapse } from "antd"
 const { Panel } = Collapse
-import React from "react"
 import { useNavigate } from "react-router-dom"
 import CourseCard from "./CourseCard"
 import PlatformHeader from "./PlatformHeader"

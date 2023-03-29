@@ -1,11 +1,14 @@
 import React from "react"
 import PlatformHeader from "./PlatformHeader"
 import courseImg from "@/react.jpg"
+import { Collapse } from "antd"
+const { Panel } = Collapse
+import { TiTick } from "react-icons/ti"
 const CourseDetailsPanel = () => {
   return (
     <div className="ml-[260px] w-full">
-      <div className="container px-5 sm:mx-auto py-3 w-full">
-        <div className=" h-full w-full py-4 flex flex-col gap-10">
+      <div className="container px-5 sm:mx-auto py-9 w-full">
+        <div className=" h-full w-full flex flex-col gap-10">
           <PlatformHeader isSearch={false} location={"Courses"} />
           <section className="w-10/12 mx-auto flex flex-col gap-5">
             <div className="h-[350px]">
@@ -76,6 +79,73 @@ const CourseDetailsPanel = () => {
                   </ul>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-16 space-y-16">
+              <div className="space-y-2">
+                <h1 className="text-2xl text-secondary font-bold">
+                  What you’ll learn
+                </h1>
+                <p className="text-sm ">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio
+                  dignissim aliquet neque eget. Quis orci, ut elementum facilisi
+                  egestas. Tempus ac libero donec ornare.{" "}
+                </p>
+              </div>
+
+              <Collapse
+                defaultActiveKey={["1"]}
+                bordered={false}
+                expandIconPosition={"end"}
+                ghost
+              >
+                <Panel header="Module goes here" key="1" className="">
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                </Panel>
+                <Panel header="Module goes here" key="2" className="">
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                </Panel>
+                <Panel header="Module goes here" key="3" className="">
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                  <div className={`py-2 mb-1 flex justify-between`}>
+                    Title goes here
+                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                      <TiTick />
+                    </div>
+                  </div>
+                </Panel>
+              </Collapse>
+
+              <button className="px-7 py-3 btn-primary rounded-md">
+                Enroll
+              </button>
             </div>
           </section>
         </div>
