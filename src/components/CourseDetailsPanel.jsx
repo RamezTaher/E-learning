@@ -41,8 +41,8 @@ const CourseDetailsPanel = () => {
                   className="w-[140px] h-[140px] rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-secondary">Ramez Taher</p>
-                  <p className="text-grayish text-sm">@rameztaher</p>
+                  <p className="text-secondary">Mourad Ben Youssef</p>
+                  <p className="text-grayish text-sm">@mourad</p>
                 </div>
               </div>
               <div className="w-3/4 space-y-8">

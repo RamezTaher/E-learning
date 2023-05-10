@@ -20,7 +20,7 @@ const Header = () => {
             <div
               className={`${
                 pathname === "/"
-                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2"
+                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
             >
@@ -31,7 +31,7 @@ const Header = () => {
             <div
               className={`${
                 pathname === "/platform"
-                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2"
+                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
             >
@@ -42,7 +42,7 @@ const Header = () => {
             <div
               className={`${
                 pathname === "/resources"
-                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2"
+                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
             >
@@ -53,7 +53,7 @@ const Header = () => {
             <div
               className={`${
                 pathname === "/contact"
-                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2"
+                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
             >

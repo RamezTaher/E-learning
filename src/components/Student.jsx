@@ -12,9 +12,9 @@ const Student = () => {
         />
         <div className="flex flex-col">
           <div className="text-secondary text-lg font-semiBold">
-            Ramez Taher
+           Mourad Ben Youssef
           </div>
-          <div className="text-sm text-grayish">@rameztaher</div>
+          <div className="text-sm text-grayish">@mourad</div>
         </div>
       </div>
 

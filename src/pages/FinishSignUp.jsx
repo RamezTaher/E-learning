@@ -36,7 +36,7 @@ const FinishSignUp = () => {
                 <div className="text-[#909090]">Personal Information</div>
               </div>
             </div>
-            <div className="flex flex-col gap-10 px-16 ">
+            <div className="flex flex-col gap-10 px-20 w-[80%] ">
               <div>
                 <h1 className="text-secondary text-3xl font-[700] mb-4">
                   Complete your profile{" "}
