@@ -8,6 +8,9 @@ import UserCourseDetails from "./pages/UserCourseDetails"
 import UserCourses from "./pages/UserCourses"
 import UserDashboard from "./pages/UserDashboard"
 import AuthProtectedRoute from "./utils/AuthProtectedRoute"
+import AdminProtectedRoute from "./utils/AdminProtectedRoute"
+import AdminStudentDetails from "./pages/AdminStudentDetails"
+import AdminAllStudents from "./pages/AdminAllStudents"
 
 function App() {
   return (
@@ -21,6 +24,14 @@ function App() {
             element={<UserCourseDetails exact />}
           />
           <Route path="/platform/billing" element={<UserBilling />} />
+        </Route>
+        <Route element={<AdminProtectedRoute />}>
+          <Route path="/admin/students" element={<AdminAllStudents />} exact />
+          <Route
+            path="/admin/students/:id"
+            element={<AdminStudentDetails />}
+            exact
+          />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/auth/login" element={<SignIn />} />
