@@ -31,6 +31,7 @@ export const UpdateUser = (id, data) => api.patch(`/user/${id}`, data, config)
 // Courses
 export const GetAllCourses = () => api.get(`/course`, config)
 export const GetCourseById = (id) => api.get(`/course/${id}`, config)
+export const DeleteCourseById = (id) => api.delete(`/course/${id}`, config)
 
 // Subjects
 export const GetAllSubjects = () => api.get(`/subject`, config)

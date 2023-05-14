@@ -13,6 +13,7 @@ import AdminStudentDetails from "./pages/AdminStudentDetails"
 import AdminAllStudents from "./pages/AdminAllStudents"
 import AdminAllInstructors from "./pages/AdminAllInstructors"
 import AdminInstructorDetails from "./pages/AdminInstructorDetails"
+import AdminAllCourses from "./pages/AdminAllCourses"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             element={<AdminAllInstructors />}
             exact
           />
+          <Route path="/admin/courses" element={<AdminAllCourses />} exact />
           <Route
             path="/admin/students/:id"
             element={<AdminStudentDetails />}

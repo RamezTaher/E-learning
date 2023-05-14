@@ -31,7 +31,6 @@ const AdminInstructorDetails = () => {
         email,
         firstName,
         lastName,
-        email,
         username,
         role,
         profileImage,

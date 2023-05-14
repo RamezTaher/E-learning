@@ -31,7 +31,6 @@ const AdminStudentDetails = () => {
         email,
         firstName,
         lastName,
-        email,
         username,
         role,
         profileImage,
