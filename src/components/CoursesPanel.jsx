@@ -1,14 +1,24 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Collapse } from "antd"
 const { Panel } = Collapse
 import { useNavigate } from "react-router-dom"
 import CourseCard from "./CourseCard"
 import PlatformHeader from "./PlatformHeader"
 import { useLocalStorage } from "react-use"
+import { GetAllSubjects } from "../utils/api-interceptor"
 
 const CoursesPanel = () => {
   const [courses, setCourses, removeCourses] = useLocalStorage("courses", [])
+
+  const [subjects, setSubjects] = useState([])
   const navigate = useNavigate()
+  useEffect(() => {
+    GetAllSubjects()
+      .then(({ data }) => {
+        setSubjects(data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
   const goToCourse = (idx) => {
     navigate(`/platform/courses/${idx}`)
   }
@@ -27,32 +37,21 @@ const CoursesPanel = () => {
                 ghost
                 className="col-span-1"
               >
-                <Panel header="Subject" key="1" className="text-lg">
-                  <div
-                    className={` text-center py-2 mb-1 rounded-md bg-primary text-white hover:bg-primary hover:text-white transition-all cursor-pointer`}
-                  >
-                    Game Development
-                  </div>
-                  <div
-                    className={` text-center py-2 mb-1 rounded-md  hover:bg-primary hover:text-white transition-all cursor-pointer`}
-                  >
-                    Web Development
-                  </div>
-                  <div
-                    className={` text-center py-2 mb-1 rounded-md  hover:bg-primary hover:text-white transition-all cursor-pointer`}
-                  >
-                    UI/UX Design
-                  </div>
-                  <div
-                    className={` text-center py-2 mb-1 rounded-md  hover:bg-primary hover:text-white transition-all cursor-pointer`}
-                  >
-                    Cyber Security
-                  </div>
+                <Panel header="Subjects" key="1" className="text-lg">
+                  {subjects.map((element, idx) => (
+                    <div
+                      key={idx}
+                      className={` text-center py-2 mb-1 rounded-md  hover:bg-primary hover:text-white transition-all cursor-pointer
+                      `}
+                    >
+                      {element.name}
+                    </div>
+                  ))}
                 </Panel>
               </Collapse>
               <div className="col-span-4 grid grid-cols-4 gap-x-2 gap-y-4">
                 {courses.map((course, idx) => (
-                  <div key={idx} onClick={() => goToCourse(idx)}>
+                  <div key={idx} onClick={() => goToCourse(course._id)}>
                     <CourseCard course={course} />
                   </div>
                 ))}

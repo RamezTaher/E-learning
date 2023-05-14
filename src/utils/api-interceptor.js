@@ -16,10 +16,14 @@ export const RegisterUser = (data) => api.post(`/auth/register`, data, config)
 
 export const LoginUser = (data) => api.post(`/auth/login`, data, config)
 
-export const GetUser = (data) => api.get(`/user/profile`, config)
+export const GetUser = () => api.get(`/user/profile`, config)
 
 // Students
-export const GetTopUsers = (data) => api.get(`/user/top`, config)
+export const GetTopUsers = () => api.get(`/user/top`, config)
 
 // Courses
-export const GetAllCourses = (data) => api.get(`/course`, config)
+export const GetAllCourses = () => api.get(`/course`, config)
+export const GetCourseById = (id) => api.get(`/course/${id}`, config)
+
+// Subjects
+export const GetAllSubjects = () => api.get(`/subject`, config)

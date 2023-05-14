@@ -9,7 +9,7 @@ const CourseDetailsPanel = () => {
     <div className="ml-[260px] w-full">
       <div className="container px-5 sm:mx-auto py-9 w-full">
         <div className=" h-full w-full flex flex-col gap-10">
-          <PlatformHeader isSearch={false} location={"Courses"} />
+          <PlatformHeader isSearch={false} location={"Course"} />
           <section className="w-10/12 mx-auto flex flex-col gap-5">
             <div className="h-[350px]">
               <img
