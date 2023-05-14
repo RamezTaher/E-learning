@@ -1,7 +1,12 @@
 import React from "react"
 import DashboardCoursesTableRow from "./DashboardCoursesTableRow"
+import { useLocalStorage } from "react-use"
 
 const DashboardCourses = () => {
+  const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
+    "userProfile",
+    {}
+  )
   return (
     <div className="rounded-lg shadow-sm">
       <h1 className="text-2xl font-[600] mb-4 text-secondary">My Courses</h1>
@@ -14,9 +19,9 @@ const DashboardCourses = () => {
           </tr>
         </thead>
         <tbody>
-          <DashboardCoursesTableRow />
-          <DashboardCoursesTableRow />
-          <DashboardCoursesTableRow />
+          {userProfile?.courses?.map((course, idx) => (
+            <DashboardCoursesTableRow key={idx} course={course} />
+          ))}
         </tbody>
       </table>
     </div>

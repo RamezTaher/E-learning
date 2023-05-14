@@ -1,22 +1,22 @@
 import { Progress } from "antd"
 import React from "react"
+import { useLocalStorage } from "react-use"
 
 const DashboardHomework = () => {
-  const info = {
-    lesson: "Data With Python",
-    lessonsNumber: 5,
-    percentange: 25,
-  }
+  const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
+    "userProfile",
+    {}
+  )
+
   return (
     <div>
       <h1 className="text-2xl font-[600] mb-4 text-secondary">
-        Homework progreee
+        Course's Lessons
       </h1>
       <div className="flex flex-col gap-2 p-2">
-        <Homework info={info} />
-        <Homework info={info} />
-        <Homework info={info} />
-        <Homework info={info} />
+        {userProfile.courses.map((course, idx) => (
+          <Homework course={course} key={idx} />
+        ))}
       </div>
     </div>
   )
@@ -24,21 +24,21 @@ const DashboardHomework = () => {
 
 export default DashboardHomework
 
-const Homework = ({ info }) => {
+const Homework = ({ course }) => {
   return (
-    <div className="flex items-center justify-center gap-2 py-3  rounded-md shadow-md">
+    <div className="flex flex-col  gap-2 p-4  rounded-md shadow-md">
+      <div className="text-secondary font-[600] text-lg">{course.title}</div>
       <div>
-        <Progress
-          size={70}
-          trailColor={"#DCDCDC"}
-          strokeColor={"#07A3E9"}
-          type="circle"
-          percent={info.percentange}
-        />
-      </div>
-      <div>
-        <div className="text-secondary font-[600] text-xl">{info.lesson}</div>
-        <div className="text-grayish">{info.lessonsNumber} Lessons</div>
+        {course.modules.map((elt, idx) => (
+          <div className=" ml-2 text-[16px] font-[500]" key={idx}>
+            {elt.title}
+            <ul className="ml-5 mt-2 text-grayish font-[400]">
+              {elt.lessons.map((lesson, index) => (
+                <li key={index}>{lesson.title}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   )
