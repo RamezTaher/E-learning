@@ -11,6 +11,7 @@ import AuthProtectedRoute from "./utils/AuthProtectedRoute"
 import AdminProtectedRoute from "./utils/AdminProtectedRoute"
 import AdminStudentDetails from "./pages/AdminStudentDetails"
 import AdminAllStudents from "./pages/AdminAllStudents"
+import AdminAllInstructors from "./pages/AdminAllInstructors"
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
         </Route>
         <Route element={<AdminProtectedRoute />}>
           <Route path="/admin/students" element={<AdminAllStudents />} exact />
+          <Route
+            path="/admin/instructors"
+            element={<AdminAllInstructors />}
+            exact
+          />
           <Route
             path="/admin/students/:id"
             element={<AdminStudentDetails />}
