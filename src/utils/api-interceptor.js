@@ -16,6 +16,8 @@ export const RegisterUser = (data) => api.post(`/auth/register`, data, config)
 
 export const LoginUser = (data) => api.post(`/auth/login`, data, config)
 
+export const GetUserStatus = () => api.get(`/auth/me`, config)
+
 export const GetUser = () => api.get(`/user/profile`, config)
 
 // Students

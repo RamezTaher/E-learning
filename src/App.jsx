@@ -7,19 +7,25 @@ import UserBilling from "./pages/UserBilling"
 import UserCourseDetails from "./pages/UserCourseDetails"
 import UserCourses from "./pages/UserCourses"
 import UserDashboard from "./pages/UserDashboard"
+import AuthProtectedRoute from "./utils/AuthProtectedRoute"
 
 function App() {
   return (
     <>
       <Routes>
+        <Route element={<AuthProtectedRoute />}>
+          <Route path="/platform/dashboard" element={<UserDashboard />} exact />
+          <Route path="/platform/courses" element={<UserCourses />} exact />
+          <Route
+            path="/platform/courses/:id"
+            element={<UserCourseDetails exact />}
+          />
+          <Route path="/platform/billing" element={<UserBilling />} />
+        </Route>
         <Route path="/" element={<Home />} />
         <Route path="/auth/login" element={<SignIn />} />
         <Route path="/auth/register" element={<SignUp />} />
         <Route path="/auth/finish-register" element={<FinishSignUp />} />
-        <Route path="/platform/dashboard" element={<UserDashboard />} />
-        <Route path="/platform/courses" element={<UserCourses />} />
-        <Route path="/platform/courses/:id" element={<UserCourseDetails />} />
-        <Route path="/platform/billing" element={<UserBilling />} />
       </Routes>
     </>
   )
