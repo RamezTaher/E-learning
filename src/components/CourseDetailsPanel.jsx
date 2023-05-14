@@ -113,8 +113,14 @@ const CourseDetailsPanel = () => {
                         className={`py-2 mb-1 flex justify-between text-lg font-normal`}
                       >
                         {lesson.title}
-                        <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                          <TiTick />
+                        <div
+                          className="flex items-center gap-5
+                        "
+                        >
+                          {lesson.duration} h
+                          <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                            <TiTick />
+                          </div>
                         </div>
                       </div>
                     ))}
