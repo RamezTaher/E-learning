@@ -20,3 +20,6 @@ export const GetUser = (data) => api.get(`/user/profile`, config)
 
 // Students
 export const GetTopUsers = (data) => api.get(`/user/top`, config)
+
+// Courses
+export const GetAllCourses = (data) => api.get(`/course`, config)

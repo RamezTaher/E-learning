@@ -4,17 +4,10 @@ const { Panel } = Collapse
 import { useNavigate } from "react-router-dom"
 import CourseCard from "./CourseCard"
 import PlatformHeader from "./PlatformHeader"
+import { useLocalStorage } from "react-use"
 
 const CoursesPanel = () => {
-  const info = {
-    lessonImg:
-      "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    student: 500,
-    time: 2,
-    title: "Mastering HTML CSS With Bootstrap",
-    teacher: "Mourad Ben Youssef",
-    img: "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
-  }
+  const [courses, setCourses, removeCourses] = useLocalStorage("courses", [])
   const navigate = useNavigate()
   const goToCourse = (idx) => {
     navigate(`/platform/courses/${idx}`)
@@ -58,9 +51,9 @@ const CoursesPanel = () => {
                 </Panel>
               </Collapse>
               <div className="col-span-4 grid grid-cols-4 gap-x-2 gap-y-4">
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((idx) => (
+                {courses.map((course, idx) => (
                   <div key={idx} onClick={() => goToCourse(idx)}>
-                    <CourseCard info={info} />
+                    <CourseCard course={course} />
                   </div>
                 ))}
               </div>
