@@ -1,15 +1,59 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { IoIosArrowBack } from "react-icons/io"
+import { useLocalStorage } from "react-use"
+import { useState } from "react"
+import { RegisterUser } from "../utils/api-interceptor"
+import Loader from "../components/Loader"
 
 const FinishSignUp = () => {
   const navigate = useNavigate()
-  const register = () => {
-    alert("register done")
-    navigate("/platform/dashboard")
+  const [loading, setLoading] = useState(false)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+
+  const [userInfo, setUserInfo, removeUserInfo] = useLocalStorage(
+    "userInfo",
+    {}
+  )
+  const [token, setToken, removeToken] = useLocalStorage("token", "")
+  const register = async (e) => {
+    e.preventDefault()
+    if (!firstName || !lastName || !password || !confirmPassword) {
+      alert("fill all fields")
+    } else {
+      if (password !== confirmPassword) {
+        alert("Confirm password")
+      } else {
+        try {
+          setLoading(true)
+          const user = await RegisterUser({
+            ...userInfo,
+            firstName,
+            lastName,
+            password,
+          })
+          if (user) {
+            setLoading(false)
+            setToken(user.data.token)
+            navigate("/platform/dashboard")
+          }
+        } catch (error) {
+          setLoading(false)
+          alert(error.response.data.message)
+        }
+      }
+    }
   }
   return (
     <>
+      {loading && (
+        <div className="h-screen w-screen bg-black bg-opacity-80 absolute flex items-center justify-center">
+          <Loader />
+        </div>
+      )}
       <section className="flex h-[100vh]">
         <div className="w-[40%] h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
           <div className="text-white text-xl">
@@ -47,34 +91,50 @@ const FinishSignUp = () => {
               </div>
               <form className="grid grid-cols-2 mt-4 gap-6">
                 <label htmlFor="name" className="col-span-1">
-                  Name*
-                  <input type="text" name="name" placeholder="Name" />
+                  First Name*
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </label>
 
                 <label htmlFor="name" className="col-span-1">
                   Last Name*
-                  <input type="text" name="name" placeholder="Last Name" />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
                 </label>
                 <label htmlFor="password" className="col-span-2">
                   Create password*
                   <input
-                    type="text"
+                    type="password"
                     name="password"
-                    placeholder="Create a new password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </label>
                 <label htmlFor="confirm-password" className="col-span-2">
                   Confirm password*{" "}
                   <input
-                    type="text"
+                    type="password"
                     name="confirm-password"
                     placeholder="Enter your password again"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </label>
 
                 <button
                   className="btn btn-primary py-5 text-lg font-normal rounded-lg col-span-2"
-                  onClick={() => register()}
+                  onClick={(e) => register(e)}
                 >
                   Register Account
                 </button>

@@ -1,11 +1,25 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { IoIosArrowBack } from "react-icons/io"
+import { useLocalStorage } from "react-use"
+import { useState } from "react"
+import Loader from "../components/Loader"
 
 const SignUp = () => {
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [userInfo, setUserInfo, removeUserInfo] = useLocalStorage(
+    "userInfo",
+    {}
+  )
   const navigate = useNavigate()
   const proceedToSignup = () => {
-    navigate("/auth/finish-register")
+    if (!email || !username) {
+      alert("fill all fields")
+    } else {
+      setUserInfo({ email, username })
+      navigate("/auth/finish-register")
+    }
   }
   return (
     <>
@@ -54,15 +68,19 @@ const SignUp = () => {
                     type="text"
                     name="email"
                     placeholder="Enter your email adress"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
 
-                <label htmlFor="code">
-                  Invitation code*
+                <label htmlFor="username">
+                  Username*
                   <input
                     type="text"
-                    name="code"
-                    placeholder="Enter your invitation code"
+                    name="username"
+                    placeholder="Enter your Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </label>
 

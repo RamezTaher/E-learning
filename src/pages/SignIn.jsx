@@ -4,15 +4,47 @@ import { useState } from "react"
 import googleIcon from "@/icons/google.svg"
 import githubIcon from "@/icons/github.svg"
 import linkedinIcon from "@/icons/linkedin.svg"
+import { LoginUser } from "../utils/api-interceptor"
+import { useLocalStorage } from "react-use"
+import Loader from "../components/Loader"
 
 const SignIn = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [token, setToken, removeToken] = useLocalStorage("token", "")
+
   const navigate = useNavigate()
-  const onSignIn = () => {
-    navigate("/platform/dashboard")
+  const onSignIn = async (e) => {
+    e.preventDefault()
+    if (!email || !password) {
+      alert("fill all fields")
+    } else {
+      try {
+        setLoading(true)
+        const user = await LoginUser({
+          email,
+          password,
+        })
+        if (user) {
+          setLoading(false)
+          setToken(user.data.token)
+          navigate("/platform/dashboard")
+        }
+      } catch (error) {
+        setLoading(false)
+        alert(error.response.data.message)
+      }
+    }
   }
   return (
     <>
+      {loading && (
+        <div className="h-screen w-screen bg-black bg-opacity-80 absolute flex items-center justify-center">
+          <Loader />
+        </div>
+      )}
       <section className="flex h-[100vh]">
         <div className="w-[40%] h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
           <div className="text-white text-xl">
@@ -43,11 +75,13 @@ const SignIn = () => {
               </div>
               <form className="flex flex-col gap-4">
                 <label htmlFor="email">
-                  Email adress / Username
+                  Email adress
                   <input
                     type="text"
                     name="email"
                     placeholder="Email or username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
 
@@ -57,6 +91,8 @@ const SignIn = () => {
                     type={isPasswordVisible ? "text" : "password"}
                     name="password"
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <span
                     className="absolute top-1/2 right-[15px] translate-y-[2px] cursor-pointer"
@@ -68,7 +104,7 @@ const SignIn = () => {
 
                 <button
                   className="btn btn-primary py-5 text-lg font-normal rounded-lg"
-                  onClick={() => onSignIn()}
+                  onClick={(e) => onSignIn(e)}
                 >
                   Login
                 </button>
