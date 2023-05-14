@@ -1,10 +1,23 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PlatformHeader from "./PlatformHeader"
-import courseImg from "@/react.jpg"
 import { Collapse } from "antd"
 const { Panel } = Collapse
 import { TiTick } from "react-icons/ti"
+import { GetCourseById } from "../utils/api-interceptor"
+import { useParams } from "react-router-dom"
+import { format, parseISO } from "date-fns"
 const CourseDetailsPanel = () => {
+  const { id } = useParams()
+  const [course, setCourse] = useState({})
+  useEffect(() => {
+    GetCourseById(id)
+      .then(({ data }) => {
+        setCourse(data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  console.log(course)
   return (
     <div className="ml-[260px] w-full">
       <div className="container px-5 sm:mx-auto py-9 w-full">
@@ -13,19 +26,20 @@ const CourseDetailsPanel = () => {
           <section className="w-10/12 mx-auto flex flex-col gap-5">
             <div className="h-[350px]">
               <img
-                src={courseImg}
+                src={course.image}
                 alt="course image"
                 className="w-full h-full object-center "
               />
             </div>
             <div className="space-y-2">
               <h1 className="text-2xl text-secondary font-bold">
-                What’s in mind of Game Developer
+                {course.title}
               </h1>
               <p>
-                18 December 2021 - 20:00 -{" "}
-                <span className="text-[#FF5821]"> (Live)</span> Zoom Application
-                - Free entry
+                {course.startDate &&
+                  format(parseISO(course.startDate), "dd MMMM Y")}{" "}
+                - <span className="text-[#FF5821]"> (Live)</span> Zoom
+                Application
               </p>
 
               <button className="px-7 py-3 btn-primary rounded-md">
@@ -36,13 +50,17 @@ const CourseDetailsPanel = () => {
               <div className="flex flex-col gap-2 w-1/4">
                 <h1 className="text-2xl text-secondary font-bold">Trainer</h1>
                 <img
-                  src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80"
-                  alt="Trainer image"
+                  src={course.instructor?.profileImage}
                   className="w-[140px] h-[140px] rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-secondary">Mourad Ben Youssef</p>
-                  <p className="text-grayish text-sm">@mourad</p>
+                  <p className="text-secondary">
+                    {course.instructor?.firstName}
+                    {course.instructor?.lastName}
+                  </p>
+                  <p className="text-grayish text-sm">
+                    @{course.instructor?.username}
+                  </p>
                 </div>
               </div>
               <div className="w-3/4 space-y-8">
@@ -50,32 +68,18 @@ const CourseDetailsPanel = () => {
                   <h1 className="text-2xl text-secondary font-bold">
                     About the Training
                   </h1>
-                  <p className="text-sm ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Odio dignissim aliquet neque eget. Quis orci, ut elementum
-                    facilisi egestas. Tempus ac libero donec ornare.{" "}
-                  </p>
+                  <p className="text-sm ">{course.description}</p>
                 </div>
                 <div className="space-y-3">
                   <h2 className="text-xl text-secondary font-semiBold">
                     Discussion topics
                   </h2>
                   <ul className="grid grid-cols-2 gap-5 text-sm">
-                    <li className="list-disc list-inside">
-                      Introduction to unity
-                    </li>
-                    <li className="list-disc list-inside">
-                      Introduction to unity
-                    </li>
-                    <li className="list-disc list-inside">
-                      Introduction to unity
-                    </li>
-                    <li className="list-disc list-inside">
-                      Introduction to unity
-                    </li>
-                    <li className="list-disc list-inside">
-                      Introduction to unity
-                    </li>
+                    {course?.modules?.map((element, idx) => (
+                      <li className="list-disc list-inside" key={idx}>
+                        {element?.title}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -87,9 +91,7 @@ const CourseDetailsPanel = () => {
                   What you’ll learn
                 </h1>
                 <p className="text-sm ">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio
-                  dignissim aliquet neque eget. Quis orci, ut elementum facilisi
-                  egestas. Tempus ac libero donec ornare.{" "}
+                  {course?.subject?.name} - {course?.subject?.description}
                 </p>
               </div>
 
@@ -99,48 +101,25 @@ const CourseDetailsPanel = () => {
                 expandIconPosition={"end"}
                 ghost
               >
-                <Panel header="Module goes here" key="1" className="">
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                </Panel>
-                <Panel header="Module goes here" key="2" className="">
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                </Panel>
-                <Panel header="Module goes here" key="3" className="">
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                  <div className={`py-2 mb-1 flex justify-between`}>
-                    Title goes here
-                    <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
-                      <TiTick />
-                    </div>
-                  </div>
-                </Panel>
+                {course?.modules?.map((modul, idx) => (
+                  <Panel
+                    header={modul.title}
+                    key={idx + 1}
+                    className="text-xl font-bold"
+                  >
+                    {modul?.lessons.map((lesson, index) => (
+                      <div
+                        key={index}
+                        className={`py-2 mb-1 flex justify-between text-lg font-normal`}
+                      >
+                        {lesson.title}
+                        <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[#4AB229] text-white">
+                          <TiTick />
+                        </div>
+                      </div>
+                    ))}
+                  </Panel>
+                ))}
               </Collapse>
 
               <button className="px-7 py-3 btn-primary rounded-md">
