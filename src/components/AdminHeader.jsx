@@ -55,7 +55,7 @@ const AdminHeader = () => {
           <Link to={"/admin/courses"}>
             <div
               className={`${
-                pathname === "/admin/courses"
+                pathname.split("/")[2] === "courses"
                   ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}

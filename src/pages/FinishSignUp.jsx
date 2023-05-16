@@ -37,8 +37,21 @@ const FinishSignUp = () => {
           })
           if (user) {
             setLoading(false)
-            setToken(user.data.token)
-            navigate("/platform/dashboard")
+            setToken(token.data.token)
+            axios
+              .get("http://localhost:5000/api/user/profile", {
+                withCredentials: true,
+                headers: {
+                  Authorization: `Bearer ${token.data.token}`,
+                },
+              })
+              .then((res) => {
+                setUserProfile(res.data)
+                navigate("/platform/dashboard")
+              })
+              .catch((error) => {
+                console.error("Error:", error)
+              })
           }
         } catch (error) {
           setLoading(false)
@@ -58,7 +71,6 @@ const FinishSignUp = () => {
         <div className="w-[40%] h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
           <div className="text-white text-xl">
             <div className="mb-4">
-              {" "}
               “Develop a passion for learning. If you do, you will never cease
               to grow.”
             </div>

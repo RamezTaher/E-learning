@@ -50,7 +50,13 @@ const SignIn = () => {
             })
             .then((res) => {
               setUserProfile(res.data)
-              navigate("/platform/dashboard")
+              if (res.data.role === "admin") {
+                navigate("/admin/courses")
+              } else if (res.data.role === "instructor") {
+                navigate("/instructor/courses")
+              } else {
+                navigate("/platform/dashboard")
+              }
             })
             .catch((error) => {
               console.error("Error:", error)
