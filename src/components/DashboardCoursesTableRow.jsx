@@ -16,13 +16,13 @@ const DashboardCoursesTableRow = ({ course }) => {
               {course?.title}
             </div>
             <div className="text-sm text-grayish">
-              {course?.modules.length} Lessons
+              {course?.modules?.length} Lessons
             </div>
           </div>
         </div>
       </td>
       <td className="align-middle text-center text-xl text-secondary w-1/4">
-        {format(parseISO(course?.startDate), "dd MMM Y")}
+        {course?.startDate&&format(parseISO(course?.startDate), "dd MMM Y")}
       </td>
       <td className="align-middle text-xl text-right text-secondary w-1/4">
         {course?.level}

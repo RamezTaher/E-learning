@@ -74,7 +74,10 @@ const AdminAllCourses = () => {
                 <td>
                   {course?.instructor?.firstName} {course?.instructor?.lastName}
                 </td>
-                <td>{format(parseISO(course?.startDate), "dd MMMM Y")}</td>
+                <td>
+                  {course?.startDate &&
+                    format(parseISO(course?.startDate), "dd MMMM Y")}
+                </td>
                 <td>
                   <Link to={`/admin/courses/${course._id}`}>
                     <button className="btn-sm">

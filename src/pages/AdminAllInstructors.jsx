@@ -63,7 +63,7 @@ const AdminAllInstructors = () => {
                   </a>
                 </td>
                 <td>{instructor.role}</td>
-                <td>{format(parseISO(instructor?.createdAt), "dd MMMM Y")}</td>
+                <td>{instructor?.createdAt&&format(parseISO(instructor?.createdAt), "dd MMMM Y")}</td>
                 <td>
                   <Link to={`/admin/instructors/${instructor._id}`}>
                     <button className="btn-sm">

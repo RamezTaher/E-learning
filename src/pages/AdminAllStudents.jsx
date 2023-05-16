@@ -60,7 +60,10 @@ const AdminAllStudents = () => {
                   <a href={`mailto:${student?.email}`}> {student?.email}</a>
                 </td>
                 <td>{student.role}</td>
-                <td>{format(parseISO(student?.createdAt), "dd MMMM Y")}</td>
+                <td>
+                  {student?.createdAt &&
+                    format(parseISO(student?.createdAt), "dd MMMM Y")}
+                </td>
                 <td>
                   <Link to={`/admin/students/${student._id}`}>
                     <button className="btn-sm">

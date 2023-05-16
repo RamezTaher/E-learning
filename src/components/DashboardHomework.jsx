@@ -29,7 +29,7 @@ const Homework = ({ course }) => {
     <div className="flex flex-col  gap-2 p-4  rounded-md shadow-md">
       <div className="text-secondary font-[600] text-lg">{course.title}</div>
       <div>
-        {course.modules.map((elt, idx) => (
+        {course?.modules?.map((elt, idx) => (
           <div className=" ml-2 text-[16px] font-[500]" key={idx}>
             {elt.title}
             <ul className="ml-5 mt-2 text-grayish font-[400]">

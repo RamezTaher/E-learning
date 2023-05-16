@@ -11,7 +11,7 @@ const DashboardTopStudents = () => {
         console.log(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [localStorage.getItem("token")])
   return (
     <div>
       <h1 className="text-2xl font-[600] mb-6 text-secondary">Top Students</h1>

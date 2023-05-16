@@ -1,12 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import googleIcon from "@/icons/google.svg"
 import githubIcon from "@/icons/github.svg"
 import linkedinIcon from "@/icons/linkedin.svg"
-import { LoginUser } from "../utils/api-interceptor"
+import { GetUser, GetUserStatus, LoginUser } from "../utils/api-interceptor"
 import { useLocalStorage } from "react-use"
 import Loader from "../components/Loader"
+import axios from "axios"
 
 const SignIn = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
@@ -14,6 +15,16 @@ const SignIn = () => {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [token, setToken, removeToken] = useLocalStorage("token", "")
+  const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
+    "userProfile",
+    {}
+  )
+  const [courses, setCourses, removeCourses] = useLocalStorage("courses", [])
+  useEffect(() => {
+    removeCourses()
+    removeUserProfile()
+    removeToken()
+  }, [])
 
   const navigate = useNavigate()
   const onSignIn = async (e) => {
@@ -23,18 +34,31 @@ const SignIn = () => {
     } else {
       try {
         setLoading(true)
-        const user = await LoginUser({
+        const token = await LoginUser({
           email,
           password,
         })
-        if (user) {
+        if (token) {
           setLoading(false)
-          setToken(user.data.token)
-          navigate("/platform/dashboard")
+          setToken(token.data.token)
+          axios
+            .get("http://localhost:5000/api/user/profile", {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${token.data.token}`,
+              },
+            })
+            .then((res) => {
+              setUserProfile(res.data)
+              navigate("/platform/dashboard")
+            })
+            .catch((error) => {
+              console.error("Error:", error)
+            })
         }
       } catch (error) {
         setLoading(false)
-        alert(error.response.data.message)
+        console.log(error)
       }
     }
   }
