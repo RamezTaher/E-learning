@@ -10,7 +10,6 @@ const AdminCourseDetails = () => {
   const [descrition, setDescription] = useState("")
   const [level, setLevel] = useState("")
   const [duration, setDuration] = useState("")
-  const [role, setRole] = useState("")
   const [profileImage, setprofileImage] = useState("")
   useEffect(() => {
     GetCourseById(id)
@@ -19,8 +18,6 @@ const AdminCourseDetails = () => {
         setDescription(data.description)
         setDuration(data.duration)
         setLevel(data.level)
-        console.log(descrition)
-        console.log(data)
       })
       .catch((err) => console.log(err))
   }, [id])
