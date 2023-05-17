@@ -51,9 +51,9 @@ const SignIn = () => {
             .then((res) => {
               setUserProfile(res.data)
               if (res.data.role === "admin") {
-                navigate("/admin/courses")
+                navigate("/admin/students")
               } else if (res.data.role === "instructor") {
-                navigate("/instructor/courses")
+                navigate("/instructor/students")
               } else {
                 navigate("/platform/dashboard")
               }
