@@ -16,48 +16,36 @@ import AdminInstructorDetails from "./pages/AdminInstructorDetails"
 import AdminAllCourses from "./pages/AdminAllCourses"
 import AdminCourseDetails from "./pages/AdminCourseDetails"
 import AdminNewCourse from "./pages/AdminNewCourse"
+import AdminCourseModules from "./pages/AdminCourseModules"
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<AuthProtectedRoute />}>
-          <Route path="/platform/dashboard" element={<UserDashboard />} exact />
-          <Route path="/platform/courses" element={<UserCourses />} exact />
-          <Route
-            path="/platform/courses/:id"
-            element={<UserCourseDetails exact />}
-          />
+          <Route path="/platform/dashboard" element={<UserDashboard />} />
+          <Route path="/platform/courses" element={<UserCourses />} />
+          <Route path="/platform/courses/:id" element={<UserCourseDetails />} />
           <Route path="/platform/billing" element={<UserBilling />} />
         </Route>
         <Route element={<AdminProtectedRoute />}>
-          <Route path="/admin/students" element={<AdminAllStudents />} exact />
+          <Route path="/admin/students" element={<AdminAllStudents />} />
           <Route
             path="/admin/courses/new-course"
             element={<AdminNewCourse />}
-            exact
           />
           <Route
-            path="/admin/instructors"
-            element={<AdminAllInstructors />}
-            exact
+            path="/admin/courses/:id/add-modules"
+            element={<AdminCourseModules />}
           />
-          <Route path="/admin/courses" element={<AdminAllCourses />} exact />
-          <Route
-            path="/admin/students/:id"
-            element={<AdminStudentDetails />}
-            exact
-          />
+          <Route path="/admin/instructors" element={<AdminAllInstructors />} />
+          <Route path="/admin/courses" element={<AdminAllCourses />} />
+          <Route path="/admin/students/:id" element={<AdminStudentDetails />} />
           <Route
             path="/admin/instructors/:id"
             element={<AdminInstructorDetails />}
-            exact
           />
-          <Route
-            path="/admin/courses/:id"
-            element={<AdminCourseDetails />}
-            exact
-          />
+          <Route path="/admin/courses/:id" element={<AdminCourseDetails />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/auth/login" element={<SignIn />} />

@@ -38,3 +38,7 @@ export const CreateCourse = (data) => api.post(`/course`, data, config)
 
 // Subjects
 export const GetAllSubjects = () => api.get(`/subject`, config)
+
+// Modules
+export const AddLessonToModule = (id, data) =>
+  api.post(`/module/${id}/lesson`, data, config)
