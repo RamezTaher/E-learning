@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { DeleteCourseById, GetAllCourses } from "../utils/api-interceptor"
 import { Link, useNavigate } from "react-router-dom"
-import Header from "../components/Header"
 import AdminHeader from "../components/AdminHeader"
 import { AiFillDelete, AiFillEdit } from "react-icons/ai"
 import { format, parseISO } from "date-fns"
@@ -25,15 +24,16 @@ const AdminAllCourses = () => {
         const res = await DeleteCourseById(id)
         const deletedCourse = res.data
         alert(deletedCourse.message)
-        navigate("/admin/courses")
+        window.location.reload()
       } catch (error) {
         console.log(error)
       }
     }
   }
 
-  const addNewCourse = () => {
-    navigate("/new-course")
+  const addNewCourse = (e) => {
+    e.preventDefault()
+    navigate("/admin/courses/new-course")
   }
   return (
     <>
@@ -43,7 +43,7 @@ const AdminAllCourses = () => {
           <h1 className="text-3xl font-bold">Courses</h1>
           <button
             className="bg-green-500 w-[140px] py-4 text-white  font-semibold"
-            onClick={() => addNewCourse}
+            onClick={(e) => addNewCourse(e)}
           >
             Add New
           </button>

@@ -34,5 +34,7 @@ export const GetCourseById = (id) => api.get(`/course/${id}`, config)
 export const DeleteCourseById = (id) => api.delete(`/course/${id}`, config)
 export const UpdateCourse = (id, data) => api.put(`/course/${id}`, data, config)
 
+export const CreateCourse = (data) => api.post(`/course`, data, config)
+
 // Subjects
 export const GetAllSubjects = () => api.get(`/subject`, config)

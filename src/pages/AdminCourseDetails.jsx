@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import AdminHeader from "../components/AdminHeader"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { GetCourseById, UpdateCourse } from "../utils/api-interceptor"
 import { DatePicker } from "antd"
-import dayjs from "dayjs"
 import { format, parseISO } from "date-fns"
 
 const AdminCourseDetails = () => {
@@ -11,7 +10,7 @@ const AdminCourseDetails = () => {
   const navigate = useNavigate()
   const [title, setTitle] = useState("")
   const [image, setImage] = useState("")
-  const [descrition, setDescription] = useState("")
+  const [description, setDescription] = useState("")
   const [level, setLevel] = useState("")
   const [duration, setDuration] = useState("")
   const [startDate, setStartDate] = useState("")
@@ -65,7 +64,7 @@ const AdminCourseDetails = () => {
       const res = await UpdateCourse(id, {
         title,
         image,
-        descrition,
+        description,
         duration,
         level,
         startDate,
@@ -82,6 +81,14 @@ const AdminCourseDetails = () => {
     <>
       <AdminHeader />
       <div className="container px-6 sm:mx-auto lg:px-10 pt-14   h-full pb-10 ">
+        <Link to={"/admin/courses"}>
+          <div
+            className="w-[120px] text-center bg-primary text-white py-2 px-4 mb-2
+          "
+          >
+            Bo Back
+          </div>
+        </Link>
         <form onSubmit={submitHandler}>
           <div className="mb-2">
             <h1 className="text-2xl text-secondary font-bold mb-2">
@@ -116,7 +123,7 @@ const AdminCourseDetails = () => {
             <textarea
               type="text"
               placeholder="Enter Course Description"
-              value={descrition}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -139,7 +146,9 @@ const AdminCourseDetails = () => {
               type="text"
               placeholder="Enter Course Level"
               value={level}
-              onChange={(e) => setLevel(e.target.value)}
+              onChange={(e) =>
+                setLevel(e.target.value.trim().toLocaleLowerCase())
+              }
             ></input>
           </div>
           <div className="mb-2">
@@ -204,57 +213,69 @@ const AdminCourseDetails = () => {
             <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
               Students
             </h1>
-            <div className="grid grid-cols-4 gap-2">
-              {students?.map((student, idx) => (
-                <div key={idx} className="flex flex-col gap-2 w-full">
-                  <img
-                    src={student?.profileImage}
-                    className="w-[140px] h-[140px] rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-secondary">
-                      {student?.firstName}
-                      {student?.lastName}
-                    </p>
-                    <p className="text-grayish text-sm">@{student?.username}</p>
+            {students.length === 0 && (
+              <div className="text-center text-lg py-10">No Students Yet</div>
+            )}
+            {students.length > 0 && (
+              <div className="grid grid-cols-4 gap-2">
+                {students?.map((student, idx) => (
+                  <div key={idx} className="flex flex-col gap-2 w-full">
+                    <img
+                      src={student?.profileImage}
+                      className="w-[140px] h-[140px] rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="text-secondary">
+                        {student?.firstName}
+                        {student?.lastName}
+                      </p>
+                      <p className="text-grayish text-sm">
+                        @{student?.username}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="mt-4">
             <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
               Modules
             </h1>
-            <div className="flex flex-col gap-2">
-              {modules?.map((element, idx) => (
-                <div key={idx} className="flex flex-col gap-2 w-full">
-                  <h2> Module Name : {element.title}</h2>
-                  <div className="ml-4 flex flex-col gap-4">
-                    {element.lessons.map((lesson, index) => (
-                      <div key={lesson._id} className="flex flex-col gap-2">
-                        <div className="text-xl text-primary">
-                          Lesson N° {index + 1} : {lesson.title}
+            {modules.length > 0 && (
+              <div className="flex flex-col gap-2">
+                {modules?.map((element, idx) => (
+                  <div key={element._id} className="flex flex-col gap-2 w-full">
+                    <h2> Module Name : {element.title}</h2>
+                    <div className="ml-4 flex flex-col gap-4">
+                      {element.lessons.map((lesson, index) => (
+                        <div key={lesson._id} className="flex flex-col gap-2">
+                          <div className="text-xl text-primary">
+                            Lesson N° {index + 1} : {lesson.title}
+                          </div>
+                          <div className="ml-2">Content : {lesson.content}</div>
+                          <div className="ml-2">
+                            Duration : {lesson.duration} Hour
+                          </div>
+                          <iframe
+                            width="560"
+                            height="315"
+                            src={getEmbeddedLink(lesson.videoUrl)}
+                            className="ml-2"
+                            allowFullScreen
+                          ></iframe>
                         </div>
-                        <div className="ml-2">Content : {lesson.content}</div>
-                        <div className="ml-2">
-                          Duration : {lesson.duration} Hour
-                        </div>
-                        <iframe
-                          width="560"
-                          height="315"
-                          src={getEmbeddedLink(lesson.videoUrl)}
-                          frameborder="0"
-                          className="ml-2"
-                          allowfullscreen
-                        ></iframe>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
+
+            {modules.length === 0 && (
+              <div className="text-lg text-center py-10">No Modules Yet</div>
+            )}
           </div>
         </form>{" "}
       </div>

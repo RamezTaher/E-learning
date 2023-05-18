@@ -15,6 +15,7 @@ import AdminAllInstructors from "./pages/AdminAllInstructors"
 import AdminInstructorDetails from "./pages/AdminInstructorDetails"
 import AdminAllCourses from "./pages/AdminAllCourses"
 import AdminCourseDetails from "./pages/AdminCourseDetails"
+import AdminNewCourse from "./pages/AdminNewCourse"
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
         </Route>
         <Route element={<AdminProtectedRoute />}>
           <Route path="/admin/students" element={<AdminAllStudents />} exact />
+          <Route
+            path="/admin/courses/new-course"
+            element={<AdminNewCourse />}
+            exact
+          />
           <Route
             path="/admin/instructors"
             element={<AdminAllInstructors />}

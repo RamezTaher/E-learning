@@ -1,6 +1,10 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
-import { DeleteUser, GetAllInstructors, GetAllStudents } from "../utils/api-interceptor"
+import {
+  DeleteUser,
+  GetAllInstructors,
+  GetAllStudents,
+} from "../utils/api-interceptor"
 import { Link, useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import AdminHeader from "../components/AdminHeader"
@@ -25,7 +29,7 @@ const AdminAllInstructors = () => {
         const res = await DeleteUser(id)
         const deltedStudent = res.data
         alert(deltedStudent.message)
-        navigate("/admin/instructors")
+        window.location.reload()
       } catch (error) {
         console.log(error)
       }
@@ -63,7 +67,10 @@ const AdminAllInstructors = () => {
                   </a>
                 </td>
                 <td>{instructor.role}</td>
-                <td>{instructor?.createdAt&&format(parseISO(instructor?.createdAt), "dd MMMM Y")}</td>
+                <td>
+                  {instructor?.createdAt &&
+                    format(parseISO(instructor?.createdAt), "dd MMMM Y")}
+                </td>
                 <td>
                   <Link to={`/admin/instructors/${instructor._id}`}>
                     <button className="btn-sm">

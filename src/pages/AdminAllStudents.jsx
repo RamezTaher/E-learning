@@ -25,7 +25,7 @@ const AdminAllStudents = () => {
         const res = await DeleteUser(id)
         const deltedStudent = res.data
         alert(deltedStudent.message)
-        navigate("/admin/students")
+        window.location.reload()
       } catch (error) {
         console.log(error)
       }
