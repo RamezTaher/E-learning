@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom"
 import {
   AddLessonToModule,
   AddModuleToCourse,
-  CreateModule,
   DeleteLessonFromModule,
   GetCourseById,
+  RemoveModuleFromCourse,
 } from "../utils/api-interceptor"
-import { AiFillMinusCircle } from "react-icons/ai"
+import { AiFillDelete, AiFillMinusCircle } from "react-icons/ai"
 
 const AdminCourseModules = () => {
   const { id } = useParams()
@@ -60,7 +60,7 @@ const AdminCourseModules = () => {
     e.preventDefault()
     if (moduleTitle) {
       try {
-        const res = await AddModuleToCourse(id,{
+        const res = await AddModuleToCourse(id, {
           title: moduleTitle,
           lessons: [
             {
@@ -97,6 +97,19 @@ const AdminCourseModules = () => {
       }
     }
   }
+
+  const handleDeleteModuleFromCourse = async (moduleId) => {
+    if (window.confirm("Are you sure to delete this Module")) {
+      try {
+        const res = await RemoveModuleFromCourse(id, moduleId)
+        const deletedModule = res.data
+        alert(deletedModule.message)
+        window.location.reload()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
   return (
     <>
       <AdminHeader />
@@ -115,7 +128,7 @@ const AdminCourseModules = () => {
             <div>
               {course.modules.map((element) => (
                 <div key={element._id}>
-                  <div>
+                  <div className="flex items-center gap-1 ">
                     <span
                       className="text-lg font-bold
                   "
@@ -123,20 +136,28 @@ const AdminCourseModules = () => {
                       Module Name :
                     </span>{" "}
                     {element.title}
+                    <div
+                      onClick={() => handleDeleteModuleFromCourse(element._id)}
+                      className="cursor-pointer"
+                    >
+                      <AiFillDelete color="red" size={20} />
+                    </div>
                   </div>
                   <div className="text-lg font-bold">Module Lessons :</div>
                   <div className="ml-3">
                     {element.lessons.map((lesson) => (
                       <div key={lesson.id} className="flex items-center gap-2">
-                        <div
-                          className="cursor-pointer
+                        {element.lessons.length > 1 && (
+                          <div
+                            className="cursor-pointer
                         "
-                          onClick={() =>
-                            handleDeleteModuleLesson(element._id, lesson.id)
-                          }
-                        >
-                          <AiFillMinusCircle color="red" />
-                        </div>
+                            onClick={() =>
+                              handleDeleteModuleLesson(element._id, lesson.id)
+                            }
+                          >
+                            <AiFillMinusCircle color="red" />
+                          </div>
+                        )}
                         {lesson.title}
                       </div>
                     ))}
