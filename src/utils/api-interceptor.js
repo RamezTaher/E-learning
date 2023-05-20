@@ -11,6 +11,8 @@ const config = {
   },
 }
 
+console.log(config)
+
 // Auth
 export const RegisterUser = (data) => api.post(`/auth/register`, data, config)
 
@@ -31,7 +33,7 @@ export const UpdateUser = (id, data) => api.patch(`/user/${id}`, data, config)
 export const addCourseToUser = (id, data) =>
   api.put(`/user/${id}/course`, data, config)
 export const RemoveCourseFromUser = (id, data) =>
-  api.delete(`/user/${id}/course`, data, config)
+  api.patch(`/user/${id}/course`, data, config)
 
 // Courses
 export const GetAllCourses = () => api.get(`/course`, config)

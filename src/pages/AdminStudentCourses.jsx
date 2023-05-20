@@ -55,6 +55,7 @@ const AdminStudentCourses = () => {
 
   const deleteHandler = async (e, courseId) => {
     e.preventDefault()
+    console.log(courseId)
     if (window.confirm("Are you sure to remove this Course")) {
       try {
         const res = await RemoveCourseFromUser(id, {
