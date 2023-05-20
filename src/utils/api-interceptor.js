@@ -36,9 +36,17 @@ export const UpdateCourse = (id, data) => api.put(`/course/${id}`, data, config)
 
 export const CreateCourse = (data) => api.post(`/course`, data, config)
 
+export const AddModuleToCourse = (courseId, data) =>
+  api.patch(`/course/${courseId}`, data, config)
+
 // Subjects
 export const GetAllSubjects = () => api.get(`/subject`, config)
 
 // Modules
 export const AddLessonToModule = (id, data) =>
   api.post(`/module/${id}/lesson`, data, config)
+
+export const DeleteLessonFromModule = (moduleId, lessonId) =>
+  api.delete(`/module/${moduleId}/lesson/${lessonId}`, config)
+
+export const CreateModule = (data) => api.post(`/module`, data, config)
