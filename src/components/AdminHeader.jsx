@@ -33,7 +33,7 @@ const AdminHeader = () => {
           <Link to={"/admin/students"}>
             <div
               className={`${
-                pathname === "/admin/students"
+                pathname.split("/")[2] === "students"
                   ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
@@ -44,7 +44,7 @@ const AdminHeader = () => {
           <Link to={"/admin/instructors"}>
             <div
               className={`${
-                pathname === "/admin/instructors"
+                pathname.split("/")[2] === "instructors"
                   ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
