@@ -6,9 +6,13 @@ const DashboardCoursesTableRow = ({ course }) => {
     <tr>
       <td className="w-1/2">
         <div className="flex gap-2">
-          <img src={course?.image} alt="ux" className="w-22 h-22" />
+          <img
+            src={course?.image}
+            alt="ux"
+            className="w-28 h-20 object-cover object-center"
+          />
 
-          <div className="flex flex-col justify-between w-[100%]">
+          <div className="flex flex-col gap-2 w-[100%]">
             <div
               className="text-lg font-[600]
 "
@@ -22,7 +26,7 @@ const DashboardCoursesTableRow = ({ course }) => {
         </div>
       </td>
       <td className="align-middle text-center text-xl text-secondary w-1/4">
-        {course?.startDate&&format(parseISO(course?.startDate), "dd MMM Y")}
+        {course?.startDate && format(parseISO(course?.startDate), "dd MMM Y")}
       </td>
       <td className="align-middle text-xl text-right text-secondary w-1/4">
         {course?.level}

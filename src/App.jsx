@@ -17,6 +17,7 @@ import AdminAllCourses from "./pages/AdminAllCourses"
 import AdminCourseDetails from "./pages/AdminCourseDetails"
 import AdminNewCourse from "./pages/AdminNewCourse"
 import AdminCourseModules from "./pages/AdminCourseModules"
+import AdminStudentCourses from "./pages/AdminStudentCourses"
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
           <Route path="/admin/instructors" element={<AdminAllInstructors />} />
           <Route path="/admin/courses" element={<AdminAllCourses />} />
           <Route path="/admin/students/:id" element={<AdminStudentDetails />} />
+          <Route
+            path="/admin/students/:id/menage-courses"
+            element={<AdminStudentCourses />}
+          />
           <Route
             path="/admin/instructors/:id"
             element={<AdminInstructorDetails />}

@@ -4,7 +4,7 @@ import { DeleteUser, GetAllStudents } from "../utils/api-interceptor"
 import { Link, useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import AdminHeader from "../components/AdminHeader"
-import { AiFillDelete, AiFillEdit } from "react-icons/ai"
+import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai"
 import { format, parseISO } from "date-fns"
 
 const AdminAllStudents = () => {
@@ -65,6 +65,11 @@ const AdminAllStudents = () => {
                     format(parseISO(student?.createdAt), "dd MMMM Y")}
                 </td>
                 <td>
+                  <Link to={`/admin/students/${student._id}/menage-courses`}>
+                    <button className="btn-sm">
+                      <AiFillPlusCircle color="blue" size={20} />
+                    </button>
+                  </Link>
                   <Link to={`/admin/students/${student._id}`}>
                     <button className="btn-sm">
                       <AiFillEdit color="green" size={20} />

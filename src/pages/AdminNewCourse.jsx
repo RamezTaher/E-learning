@@ -82,7 +82,6 @@ const AdminNewCourse = () => {
     }
   }
 
-  console.log(instructors)
   return (
     <>
       <AdminHeader />

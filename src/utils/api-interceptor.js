@@ -21,12 +21,17 @@ export const GetUserStatus = () => api.get(`/auth/me`, config)
 export const GetUser = () => api.get(`/user/profile`, config)
 export const GetUserById = (id) => api.get(`/user/${id}`, config)
 
-// Students
+// Users
 export const GetTopUsers = () => api.get(`/user/top`, config)
 export const GetAllStudents = () => api.get(`/user/students`, config)
 export const GetAllInstructors = () => api.get(`/user/instructors`, config)
 export const DeleteUser = (id) => api.delete(`/user/${id}`, config)
 export const UpdateUser = (id, data) => api.patch(`/user/${id}`, data, config)
+
+export const addCourseToUser = (id, data) =>
+  api.put(`/user/${id}/course`, data, config)
+export const RemoveCourseFromUser = (id, data) =>
+  api.delete(`/user/${id}/course`, data, config)
 
 // Courses
 export const GetAllCourses = () => api.get(`/course`, config)
