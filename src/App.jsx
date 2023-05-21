@@ -22,6 +22,7 @@ import InstructorProtectedRoute from "./utils/IntructorProtectedRoute"
 import InstructorAllStudents from "./pages/InstructorAllStudents"
 import InstructorAllCourses from "./pages/InstructorAllCourses"
 import InstructorNewCourse from "./pages/InstructorNewCourse"
+import InstructorCourseModules from "./pages/InstructorCourseModules"
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
           />
           <Route
             path="/instructor/courses/:id/add-modules"
-            element={<AdminCourseModules />}
+            element={<InstructorCourseModules />}
           />
 
           <Route
