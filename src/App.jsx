@@ -26,6 +26,8 @@ import InstructorStudentCourses from "./pages/InstructorStudentCourses"
 import InstructorCourseDetails from "./pages/InstructorCourseDetails"
 import CourseDetails from "./pages/CourseDetails"
 import UserProfile from "./pages/UserProfile"
+import InstructorProfile from "./pages/InstructorProfile"
+import InstructorAddTest from "./pages/InstructorAddTest"
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
         </Route>
         {/* Instructor */}
         <Route element={<InstructorProtectedRoute />}>
+          <Route path="/instructor/profile" element={<InstructorProfile />} />
           <Route
             path="/instructor/students"
             element={<InstructorAllStudents />}
@@ -55,6 +58,10 @@ function App() {
           <Route
             path="/instructor/courses/:id/add-modules"
             element={<InstructorCourseModules />}
+          />
+          <Route
+            path="/instructor/courses/:id/add-test"
+            element={<InstructorAddTest />}
           />
 
           <Route

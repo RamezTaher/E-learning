@@ -53,6 +53,17 @@ const InstructorHeader = () => {
               Courses
             </div>
           </Link>
+          <Link to={"/instructor/profile"}>
+            <div
+              className={`${
+                pathname.split("/")[2] === "profile"
+                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
+                  : ""
+              }`}
+            >
+              Profile
+            </div>
+          </Link>
         </nav>
         <div>
           <button className="btn btn-primary" onClick={(e) => logout(e)}>

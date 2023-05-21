@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { DeleteCourseById, GetAllCourses } from "../utils/api-interceptor"
 import { Link, useNavigate } from "react-router-dom"
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai"
+import { GrDocumentTest } from "react-icons/gr"
 import { format, parseISO } from "date-fns"
 import InstructorHeader from "../components/InstructorHeader"
 
@@ -79,6 +80,11 @@ const InstructorAllCourses = () => {
                     format(parseISO(course?.startDate), "dd MMMM Y")}
                 </td>
                 <td>
+                  <Link to={`/instructor/courses/${course._id}/add-test`}>
+                    <button className="btn-sm">
+                      <GrDocumentTest color="green" size={20} />
+                    </button>
+                  </Link>
                   <Link to={`/instructor/courses/${course._id}/add-modules`}>
                     <button className="btn-sm">
                       <AiFillPlusCircle color="blue" size={20} />

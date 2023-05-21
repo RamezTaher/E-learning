@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react"
 import AdminHeader from "../components/AdminHeader"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { GetCourseById, UpdateCourse } from "../utils/api-interceptor"
-import { DatePicker } from "antd"
+import {
+  AddResponseToCourse,
+  GetCourseById,
+  UpdateCourse,
+} from "../utils/api-interceptor"
 import { format, parseISO } from "date-fns"
 import SideBar from "../components/SideBar"
+import { useLocalStorage } from "react-use"
 
 const CourseDetails = () => {
   const { id } = useParams()
@@ -13,20 +17,18 @@ const CourseDetails = () => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
   const [level, setLevel] = useState("")
+  const [test, setTest] = useState("")
   const [duration, setDuration] = useState("")
   const [startDate, setStartDate] = useState("")
   const [instructor, setInstructor] = useState({})
   const [subject, setSubject] = useState({})
   const [modules, setModules] = useState([])
+  const [responseLink, setResponseLink] = useState("")
 
-  const handleDateChange = (date) => {
-    if (date) {
-      const formattedDate = date.toISOString()
-      setStartDate(formattedDate)
-    } else {
-      setStartDate(null)
-    }
-  }
+  const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
+    "userProfile",
+    {}
+  )
 
   const getEmbeddedLink = (youtubeLink) => {
     const videoId = youtubeLink.match(
@@ -54,15 +56,32 @@ const CourseDetails = () => {
         setInstructor(data.instructor)
         setSubject(data.subject)
         setModules(data.modules)
+        setTest(data?.test)
       })
       .catch((err) => console.log(err))
   }, [id])
+
+  const addResponse = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await AddResponseToCourse(id, {
+        link: responseLink,
+        student: `${userProfile.firstName} ${userProfile.lastName}`,
+      })
+      if (res.status === 201) {
+        alert("Response Submitted Successfully")
+        window.location.reload()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="flex">
       <SideBar />
       <div className="ml-[260px] w-full">
-        <div className=" container px-5  sm:mx-auto lg:px-10 py-9   h-full pb-10 ">
+        <div className=" container px-5  sm:mx-auto lg:px-10 py-9   h-full ">
           <Link to={"/platform/courses"}>
             <div
               className="w-[120px] text-center bg-primary text-white py-2 px-4 mb-2
@@ -215,10 +234,53 @@ const CourseDetails = () => {
               )}
 
               {modules.length === 0 && (
-                <div className="text-lg text-center py-10">No Modules Yet</div>
+                <div className="text-lg text-center ">No Modules Yet</div>
               )}
             </div>
           </form>{" "}
+          <div className="py-10">
+            <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
+              Test
+            </h1>
+            {test && (
+              <div className="text-center">
+                <a href={test} target="_blank" className="text-primary text-xl">
+                  Test Link
+                </a>
+              </div>
+            )}
+
+            {!test && (
+              <div className="text-lg text-center py-10">No Test Yet</div>
+            )}
+          </div>
+          {test && (
+            <div className="py-10">
+              <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
+                Send Your Response
+              </h1>
+              <form className="w-full  px-10">
+                <div>
+                  <label>Response Link</label>
+                  <input
+                    placeholder="Enter Response Link"
+                    value={responseLink}
+                    onChange={(e) => setResponseLink(e.target.value)}
+                    type="text"
+                  />
+                </div>
+                <div className="flex items-center justify-center mt-10">
+                  <button
+                    type="submit"
+                    className="bg-green-500 w-[300px] py-3 text-white text-lg "
+                    onClick={(e) => addResponse(e)}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     </div>
