@@ -17,16 +17,17 @@ const InstructorHeader = () => {
     {}
   )
   const logout = (e) => {
+    e.preventDefault()
     removeCourses()
     removeUserProfile()
     removeToken()
     removeUserInfo()
-    navigation("/auth/register")
+    navigation("/auth/login")
   }
   return (
     <header className="text-sm">
       <div className="container px-6 sm:mx-auto relative  lg:px-10 py-3 flex items-center justify-between">
-        <Link to={"/"}>
+        <Link to={"/instructor/students"}>
           <Logo />
         </Link>
         <nav className="flex items-center gap-10">

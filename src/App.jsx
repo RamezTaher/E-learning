@@ -23,6 +23,8 @@ import InstructorAllStudents from "./pages/InstructorAllStudents"
 import InstructorAllCourses from "./pages/InstructorAllCourses"
 import InstructorNewCourse from "./pages/InstructorNewCourse"
 import InstructorCourseModules from "./pages/InstructorCourseModules"
+import InstructorStudentCourses from "./pages/InstructorStudentCourses"
+import InstructorCourseDetails from "./pages/InstructorCourseDetails"
 
 function App() {
   return (
@@ -55,13 +57,14 @@ function App() {
 
           <Route
             path="/instructor/students/:id/menage-courses"
-            element={<AdminStudentCourses />}
+            element={<InstructorStudentCourses />}
           />
           <Route
             path="/instructor/courses/:id"
-            element={<AdminCourseDetails />}
+            element={<InstructorCourseDetails />}
           />
         </Route>
+        {/* Admin */}
         <Route element={<AdminProtectedRoute />}>
           <Route path="/admin/students" element={<AdminAllStudents />} />
           <Route
