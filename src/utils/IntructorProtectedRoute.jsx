@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 import { useLocalStorage } from "react-use"
 
-const IntructorProtectedRoute = ({ children, ...rest }) => {
+const InstructorProtectedRoute = ({ children, ...rest }) => {
   const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
     "userProfile",
     {}
@@ -15,4 +15,4 @@ const IntructorProtectedRoute = ({ children, ...rest }) => {
   )
 }
 
-export default IntructorProtectedRoute
+export default InstructorProtectedRoute

@@ -18,6 +18,10 @@ import AdminCourseDetails from "./pages/AdminCourseDetails"
 import AdminNewCourse from "./pages/AdminNewCourse"
 import AdminCourseModules from "./pages/AdminCourseModules"
 import AdminStudentCourses from "./pages/AdminStudentCourses"
+import InstructorProtectedRoute from "./utils/IntructorProtectedRoute"
+import InstructorAllStudents from "./pages/InstructorAllStudents"
+import InstructorAllCourses from "./pages/InstructorAllCourses"
+import InstructorNewCourse from "./pages/InstructorNewCourse"
 
 function App() {
   return (
@@ -28,6 +32,34 @@ function App() {
           <Route path="/platform/courses" element={<UserCourses />} />
           <Route path="/platform/courses/:id" element={<UserCourseDetails />} />
           <Route path="/platform/billing" element={<UserBilling />} />
+        </Route>
+        {/* Instructor */}
+        <Route element={<InstructorProtectedRoute />}>
+          <Route
+            path="/instructor/students"
+            element={<InstructorAllStudents />}
+          />
+          <Route
+            path="/instructor/courses"
+            element={<InstructorAllCourses />}
+          />
+          <Route
+            path="/instructor/courses/new-course"
+            element={<InstructorNewCourse />}
+          />
+          <Route
+            path="/instructor/courses/:id/add-modules"
+            element={<AdminCourseModules />}
+          />
+
+          <Route
+            path="/instructor/students/:id/menage-courses"
+            element={<AdminStudentCourses />}
+          />
+          <Route
+            path="/instructor/courses/:id"
+            element={<AdminCourseDetails />}
+          />
         </Route>
         <Route element={<AdminProtectedRoute />}>
           <Route path="/admin/students" element={<AdminAllStudents />} />
