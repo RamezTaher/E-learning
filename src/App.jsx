@@ -3,7 +3,6 @@ import FinishSignUp from "./pages/FinishSignUp"
 import Home from "./pages/Home"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
-import UserBilling from "./pages/UserBilling"
 import UserCourseDetails from "./pages/UserCourseDetails"
 import UserCourses from "./pages/UserCourses"
 import UserDashboard from "./pages/UserDashboard"
@@ -25,6 +24,8 @@ import InstructorNewCourse from "./pages/InstructorNewCourse"
 import InstructorCourseModules from "./pages/InstructorCourseModules"
 import InstructorStudentCourses from "./pages/InstructorStudentCourses"
 import InstructorCourseDetails from "./pages/InstructorCourseDetails"
+import CourseDetails from "./pages/CourseDetails"
+import UserProfile from "./pages/UserProfile"
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
           <Route path="/platform/dashboard" element={<UserDashboard />} />
           <Route path="/platform/courses" element={<UserCourses />} />
           <Route path="/platform/courses/:id" element={<UserCourseDetails />} />
-          <Route path="/platform/billing" element={<UserBilling />} />
+          <Route path="/platform/course/:id" element={<CourseDetails />} />
+          <Route path="/user/profile" element={<UserProfile />} />
         </Route>
         {/* Instructor */}
         <Route element={<InstructorProtectedRoute />}>

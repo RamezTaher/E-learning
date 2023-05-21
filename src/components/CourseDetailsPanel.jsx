@@ -4,11 +4,12 @@ import { Collapse } from "antd"
 const { Panel } = Collapse
 import { TiTick } from "react-icons/ti"
 import { GetCourseById } from "../utils/api-interceptor"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { format, parseISO } from "date-fns"
 const CourseDetailsPanel = () => {
   const { id } = useParams()
   const [course, setCourse] = useState({})
+  const navigate = useNavigate()
   useEffect(() => {
     GetCourseById(id)
       .then(({ data }) => {
@@ -17,7 +18,11 @@ const CourseDetailsPanel = () => {
       .catch((err) => console.log(err))
   }, [])
 
-  console.log(course)
+  const goToCourse = (e) => {
+    e.preventDefault()
+    navigate(`/platform/course/${id}`)
+  }
+
   return (
     <div className="ml-[260px] w-full">
       <div className="container px-5 sm:mx-auto py-9 w-full">
@@ -41,10 +46,6 @@ const CourseDetailsPanel = () => {
                 - <span className="text-[#FF5821]"> (Live)</span> Zoom
                 Application
               </p>
-
-              <button className="px-7 py-3 btn-primary rounded-md">
-                Enroll
-              </button>
             </div>
             <div className="flex mt-10">
               <div className="flex flex-col gap-2 w-1/4">
@@ -128,8 +129,11 @@ const CourseDetailsPanel = () => {
                 ))}
               </Collapse>
 
-              <button className="px-7 py-3 btn-primary rounded-md">
-                Enroll
+              <button
+                className="px-7 py-3 btn-primary rounded-md"
+                onClick={(e) => goToCourse(e)}
+              >
+                Go Course
               </button>
             </div>
           </section>

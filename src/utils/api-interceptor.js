@@ -21,6 +21,7 @@ export const LoginUser = (data) => api.post(`/auth/login`, data, config)
 export const GetUserStatus = () => api.get(`/auth/me`, config)
 
 export const GetUser = () => api.get(`/user/profile`, config)
+export const UpdateUserProfile = () => api.patch(`/user/profile`, data, config)
 export const GetUserById = (id) => api.get(`/user/${id}`, config)
 
 // Users
