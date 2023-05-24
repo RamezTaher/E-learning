@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { DeleteUser, GetAllStudents } from "../utils/api-interceptor"
 import { Link, useNavigate } from "react-router-dom"
-import Header from "../components/Header"
 import AdminHeader from "../components/AdminHeader"
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai"
 import { format, parseISO } from "date-fns"
@@ -17,7 +16,7 @@ const AdminAllStudents = () => {
         setStudents(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [window.localStorage.getItem("token")])
 
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure to delete this Student")) {

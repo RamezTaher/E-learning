@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom"
 import CourseCard from "./CourseCard"
 import PlatformHeader from "./PlatformHeader"
 import { useLocalStorage } from "react-use"
-import { GetAllSubjects } from "../utils/api-interceptor"
+import {
+  GetAllCourses,
+  GetAllSubjects,
+  GetUser,
+} from "../utils/api-interceptor"
 import UserProfile from "../pages/UserProfile"
 
 const CoursesPanel = () => {
@@ -24,7 +28,16 @@ const CoursesPanel = () => {
         setSubjects(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [window.localStorage.getItem("token")])
+  useEffect(() => {
+    GetUser()
+      .then(({ data }) => {
+        setAllCourses(data.courses)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [window.localStorage.getItem("token")])
   const goToCourse = (idx) => {
     navigate(`/platform/courses/${idx}`)
   }
@@ -56,15 +69,13 @@ const CoursesPanel = () => {
                 </Panel>
               </Collapse>
               <div className="col-span-4 grid grid-cols-4 gap-x-2 gap-y-4">
-                {userProfile?.courses?.length > 0 &&
-                  userProfile?.courses?.map((course, idx) => (
+                {AllCourses.length > 0 &&
+                  AllCourses.map((course, idx) => (
                     <div key={idx} onClick={() => goToCourse(course._id)}>
                       <CourseCard course={course} />
                     </div>
                   ))}
-                {userProfile?.courses?.length === 0 && (
-                  <div>No Courses Yet</div>
-                )}
+                {AllCourses.length === 0 && <div>No Courses Yet</div>}
               </div>
             </section>
           </div>

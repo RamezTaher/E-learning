@@ -15,7 +15,7 @@ const UserDashboard = () => {
         setUserProfile(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [window.localStorage.getItem("token")])
   return (
     <>
       <section className="flex">

@@ -77,7 +77,7 @@ const CourseDetailsPanel = () => {
                   </h2>
                   <ul className="grid grid-cols-2 gap-5 text-sm">
                     {course?.modules?.map((element, idx) => (
-                      <li className="list-disc list-inside" key={idx}>
+                      <li className="list-disc list-inside" key={element._id}>
                         {element?.title}
                       </li>
                     ))}

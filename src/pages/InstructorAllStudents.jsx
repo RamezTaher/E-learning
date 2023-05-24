@@ -18,7 +18,7 @@ const InstructorAllStudents = () => {
         setStudents(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [window.localStorage.getItem("token")])
 
   return (
     <>

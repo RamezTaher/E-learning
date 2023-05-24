@@ -55,7 +55,7 @@ const FinishSignUp = () => {
           }
         } catch (error) {
           setLoading(false)
-          alert(error.response.data.message)
+          alert(error?.response?.data?.message)
         }
       }
     }
