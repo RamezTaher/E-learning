@@ -23,8 +23,8 @@ const SignUp = () => {
   }
   return (
     <>
-      <section className="flex h-[100vh]">
-        <div className="w-[40%] h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
+      <section className="flex flex-col lg:flex-row lg:h-[100vh]">
+        <div className="lg:w-[40%] h-[400px] lg:h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
           <div className="text-white text-xl">
             <div className="mb-4">
               {" "}
@@ -34,8 +34,8 @@ const SignUp = () => {
             <div>Anthony J. D’Angelo</div>
           </div>
         </div>
-        <div className="container px-6 sm:mx-auto lg:px-10 py-3  w-[60%] h-full">
-          <div className="text-grayish text-right mb-5">
+        <div className="container px-6 sm:mx-auto lg:px-10 py-10 lg:py-3 lg:w-[60%] h-full">
+          <div className="text-grayish  lg:text-right mb-5">
             You have an account ?{" "}
             <Link to="/auth/login">
               <span className="text-primary">Sign In</span>
@@ -52,7 +52,7 @@ const SignUp = () => {
                 <div className="text-[#909090]">Approving identity</div>
               </div>
             </div>
-            <div className="flex flex-col gap-10 px-20 w-[80%]">
+            <div className="flex flex-col gap-10 lg:px-20 lg:w-[80%]">
               <div>
                 <h1 className="text-secondary text-3xl font-[700] mb-4">
                   Register Your Account
