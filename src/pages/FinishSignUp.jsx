@@ -67,8 +67,8 @@ const FinishSignUp = () => {
           <Loader />
         </div>
       )}
-      <section className="flex h-[100vh]">
-        <div className="w-[40%] h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
+      <section className="flex flex-col lg:flex-row lg:h-[100vh]">
+        <div className="lg:w-[40%] h-[400px] lg:h-full bg-auth-cover bg-center bg-cover flex items-center justify-center p-10">
           <div className="text-white text-xl">
             <div className="mb-4">
               “Develop a passion for learning. If you do, you will never cease
@@ -77,7 +77,7 @@ const FinishSignUp = () => {
             <div>Anthony J. D’Angelo</div>
           </div>
         </div>
-        <div className="container px-6 sm:mx-auto lg:px-10 py-3  w-[60%] h-full">
+        <div className="container px-6 sm:mx-auto lg:px-10 py-10 lg:py-3 lg:w-[60%] h-full">
           <div className="h-full flex flex-col gap-16">
             <div className="flex justify-between items-start">
               <Link
@@ -92,7 +92,7 @@ const FinishSignUp = () => {
                 <div className="text-[#909090]">Personal Information</div>
               </div>
             </div>
-            <div className="flex flex-col gap-10 px-20 w-[80%] ">
+            <div className="flex flex-col gap-10 lg:px-20 lg:w-[80%]">
               <div>
                 <h1 className="text-secondary text-3xl font-[700] mb-4">
                   Complete your profile{" "}
@@ -102,7 +102,7 @@ const FinishSignUp = () => {
                 </p>
               </div>
               <form className="grid grid-cols-2 mt-4 gap-6">
-                <label htmlFor="name" className="col-span-1">
+                <label htmlFor="name" className="col-span-2 lg:col-span-1">
                   First Name*
                   <input
                     type="text"
@@ -113,7 +113,7 @@ const FinishSignUp = () => {
                   />
                 </label>
 
-                <label htmlFor="name" className="col-span-1">
+                <label htmlFor="name" className="col-span-2 lg:col-span-1">
                   Last Name*
                   <input
                     type="text"

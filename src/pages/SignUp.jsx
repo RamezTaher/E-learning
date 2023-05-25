@@ -13,7 +13,8 @@ const SignUp = () => {
     {}
   )
   const navigate = useNavigate()
-  const proceedToSignup = () => {
+  const proceedToSignup = (e) => {
+    e.preventDefault()
     if (!email || !username) {
       alert("fill all fields")
     } else {
@@ -86,7 +87,7 @@ const SignUp = () => {
 
                 <button
                   className="btn btn-primary py-5 text-lg font-normal rounded-lg"
-                  onClick={() => proceedToSignup()}
+                  onClick={(e) => proceedToSignup(e)}
                 >
                   Proceed
                 </button>
