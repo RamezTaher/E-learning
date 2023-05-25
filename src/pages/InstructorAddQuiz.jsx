@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import {
-  AddLessonToModule,
-  AddModuleToCourse,
-  AddQuizToCourse,
-  AddTestToCourse,
-  DeleteLessonFromModule,
-  GetCourseById,
-  RemoveModuleFromCourse,
-} from "../utils/api-interceptor"
-import { AiFillDelete, AiFillMinusCircle } from "react-icons/ai"
+import { AddQuizToCourse, GetCourseById } from "../utils/api-interceptor"
 import InstructorHeader from "../components/InstructorHeader"
 
 const InstructorAddQuiz = () => {

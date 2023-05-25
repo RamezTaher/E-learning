@@ -29,6 +29,7 @@ import UserProfile from "./pages/UserProfile"
 import InstructorProfile from "./pages/InstructorProfile"
 import InstructorAddTest from "./pages/InstructorAddTest"
 import InstructorAddQuiz from "./pages/InstructorAddQuiz"
+import InstructorAddQuestionsToQuiz from "./pages/InstructorAddQuestionsToQuiz"
 
 function App() {
   return (
@@ -67,6 +68,10 @@ function App() {
           <Route
             path="/instructor/courses/:id/add-quiz"
             element={<InstructorAddQuiz />}
+          />
+          <Route
+            path="/instructor/courses/:id/add-quiz/:quizId"
+            element={<InstructorAddQuestionsToQuiz />}
           />
 
           <Route
