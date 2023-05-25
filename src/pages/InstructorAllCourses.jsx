@@ -6,6 +6,7 @@ import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai"
 import { GrDocumentTest } from "react-icons/gr"
 import { format, parseISO } from "date-fns"
 import InstructorHeader from "../components/InstructorHeader"
+import { MdQuiz } from "react-icons/md"
 
 const InstructorAllCourses = () => {
   const [courses, setCourses] = useState([])
@@ -80,16 +81,22 @@ const InstructorAllCourses = () => {
                     format(parseISO(course?.startDate), "dd MMMM Y")}
                 </td>
                 <td>
-                  <Link to={`/instructor/courses/${course._id}/add-test`}>
-                    <button className="btn-sm">
-                      <GrDocumentTest color="green" size={20} />
-                    </button>
-                  </Link>
                   <Link to={`/instructor/courses/${course._id}/add-modules`}>
                     <button className="btn-sm">
                       <AiFillPlusCircle color="blue" size={20} />
                     </button>
                   </Link>
+                  <Link to={`/instructor/courses/${course._id}/add-quiz`}>
+                    <button className="btn-sm">
+                      <MdQuiz color="" size={22} />
+                    </button>
+                  </Link>
+                  <Link to={`/instructor/courses/${course._id}/add-test`}>
+                    <button className="btn-sm">
+                      <GrDocumentTest color="green" size={20} />
+                    </button>
+                  </Link>
+
                   <Link to={`/instructor/courses/${course._id}`}>
                     <button className="btn-sm">
                       <AiFillEdit color="green" size={20} />

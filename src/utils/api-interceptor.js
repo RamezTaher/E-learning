@@ -43,6 +43,8 @@ export const DeleteCourseById = (id) => api.delete(`/course/${id}`, config)
 export const UpdateCourse = (id, data) => api.put(`/course/${id}`, data, config)
 export const AddTestToCourse = (id, data) =>
   api.put(`/course/test/${id}`, data, config)
+export const AddQuizToCourse = (id, data) =>
+  api.put(`/course/quiz/${id}`, data, config)
 export const AddResponseToCourse = (id, data) =>
   api.put(`/course/submit/${id}`, data, config)
 

@@ -28,6 +28,7 @@ import CourseDetails from "./pages/CourseDetails"
 import UserProfile from "./pages/UserProfile"
 import InstructorProfile from "./pages/InstructorProfile"
 import InstructorAddTest from "./pages/InstructorAddTest"
+import InstructorAddQuiz from "./pages/InstructorAddQuiz"
 
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
           <Route
             path="/instructor/courses/:id/add-test"
             element={<InstructorAddTest />}
+          />
+          <Route
+            path="/instructor/courses/:id/add-quiz"
+            element={<InstructorAddQuiz />}
           />
 
           <Route
