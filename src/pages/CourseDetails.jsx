@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react"
-import AdminHeader from "../components/AdminHeader"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import {
-  AddResponseToCourse,
-  GetCourseById,
-  UpdateCourse,
-} from "../utils/api-interceptor"
+import { AddResponseToCourse, GetCourseById } from "../utils/api-interceptor"
 import { format, parseISO } from "date-fns"
 import SideBar from "../components/SideBar"
 import { useLocalStorage } from "react-use"
@@ -23,6 +18,7 @@ const CourseDetails = () => {
   const [instructor, setInstructor] = useState({})
   const [subject, setSubject] = useState({})
   const [modules, setModules] = useState([])
+  const [quiz, setQuiz] = useState([])
   const [responseLink, setResponseLink] = useState("")
 
   const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
@@ -57,6 +53,7 @@ const CourseDetails = () => {
         setSubject(data.subject)
         setModules(data.modules)
         setTest(data?.test)
+        setQuiz(data?.quiz)
       })
       .catch((err) => console.log(err))
   }, [id])
@@ -237,7 +234,30 @@ const CourseDetails = () => {
                 <div className="text-lg text-center ">No Modules Yet</div>
               )}
             </div>
-          </form>{" "}
+          </form>
+          <div className="py-10">
+            <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
+              Quizs
+            </h1>
+            {quiz?.length > 0 && (
+              <div>
+                {quiz.map((element, idx) => (
+                  <div className="text-center">
+                    <Link
+                      to={`/platform/course/${id}/quiz/${element._id}`}
+                      className="text-primary text-xl"
+                    >
+                      Quiz N°{idx + 1}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!quiz?.length === 0 && (
+              <div className="text-lg text-center py-10">No Quizs Yet</div>
+            )}
+          </div>
           <div className="py-10">
             <h1 className="text-3xl text-secondary font-bold mb-2 text-center">
               Test
