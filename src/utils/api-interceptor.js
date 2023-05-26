@@ -65,3 +65,6 @@ export const AddLessonToModule = (id, data) =>
 
 export const DeleteLessonFromModule = (moduleId, lessonId) =>
   api.delete(`/module/${moduleId}/lesson/${lessonId}`, config)
+
+// Quiz
+export const GetQuizById = (id) => api.get(`/quiz/${id}`, config)

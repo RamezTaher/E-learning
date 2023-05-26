@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import { AddQuizToCourse, GetCourseById } from "../utils/api-interceptor"
+import {
+  AddQuizToCourse,
+  GetCourseById,
+  GetQuizById,
+} from "../utils/api-interceptor"
 import InstructorHeader from "../components/InstructorHeader"
 
 const InstructorAddQuestionsToQuiz = () => {
   const { id, quizId } = useParams()
-  const [course, setCourse] = useState({})
+  const [quiz, setQuiz] = useState({})
 
   useEffect(() => {
-    GetCourseById(id)
+    GetQuizById(quizId)
       .then(({ data }) => {
-        setCourse(data)
+        setQuiz(data)
       })
       .catch((err) => console.log(err))
-  }, [id])
+  }, [quizId])
 
   return (
     <>
@@ -29,7 +33,32 @@ const InstructorAddQuestionsToQuiz = () => {
         </Link>
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl  font-bold mt-5">Quiz Details</h1>
-          <h3 className="text-2xl font-bold">Questions : </h3>
+          {quiz?.questions?.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {quiz.questions.map((question, idx) => (
+                <div key={question._id}>
+                  <div className="flex items-center gap-2 text-xl">
+                    <h3 className=" font-bold">Questions N°{idx + 1} : </h3>
+                    <div>{question.question}</div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xl">
+                    <h3 className=" font-bold">Responses : </h3>
+                    <div className="flex items-center gap-2">
+                      {question.answers.map((answer, index) => (
+                        <div>{answer}</div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xl">
+                    <h3 className=" font-bold">Correct Answer : </h3>
+                    <div className="flex items-center gap-2">
+                      {question.answers[question.correctAnswer]}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>
