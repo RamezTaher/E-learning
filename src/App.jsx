@@ -30,6 +30,7 @@ import InstructorProfile from "./pages/InstructorProfile"
 import InstructorAddTest from "./pages/InstructorAddTest"
 import InstructorAddQuiz from "./pages/InstructorAddQuiz"
 import InstructorAddQuestionsToQuiz from "./pages/InstructorAddQuestionsToQuiz"
+import UserCourseQuiz from "./pages/UserCourseQuiz"
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
           <Route path="/platform/courses" element={<UserCourses />} />
           <Route path="/platform/courses/:id" element={<UserCourseDetails />} />
           <Route path="/platform/course/:id" element={<CourseDetails />} />
+          <Route
+            path="/platform/course/:id/quiz/:quizId"
+            element={<UserCourseQuiz />}
+          />
           <Route path="/user/profile" element={<UserProfile />} />
         </Route>
         {/* Instructor */}
