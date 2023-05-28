@@ -31,6 +31,7 @@ import InstructorAddTest from "./pages/InstructorAddTest"
 import InstructorAddQuiz from "./pages/InstructorAddQuiz"
 import InstructorAddQuestionsToQuiz from "./pages/InstructorAddQuestionsToQuiz"
 import UserCourseQuiz from "./pages/UserCourseQuiz"
+import Contact from "./pages/Contact"
 
 function App() {
   return (
@@ -114,7 +115,7 @@ function App() {
         </Route>
         <Route path="/" element={<Home />} />
         {/* Contact Page */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} /> 
         <Route path="/auth/login" element={<SignIn />} />
         <Route path="/auth/register" element={<SignUp />} />
         <Route path="/auth/finish-register" element={<FinishSignUp />} />
