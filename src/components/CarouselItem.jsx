@@ -1,6 +1,12 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 const CarouselItem = ({ img }) => {
+  const navigate = useNavigate()
+  const handleClick=(e)=>{
+  e.preventDefault()
+  navigate('/auth/register')
+  }
   return (
     <div className="py-6 flex items-center h-[500px]">
       <div className="flex flex-col  gap-8 px-20 w-1/2">
@@ -13,7 +19,7 @@ const CarouselItem = ({ img }) => {
           started building a site today
         </p>
         <div className="w-[175px]">
-          <button className="w-full py-3 btn-primary text-lg font-bold">
+          <button className="w-full py-3 btn-primary text-lg font-bold" onClick={(e)=>handleClick(e)}>
             Sign up
           </button>
         </div>
