@@ -36,22 +36,8 @@ const FinishSignUp = () => {
             password,
           })
           if (user) {
-            setLoading(false)
-            setToken(user.data.token)
-            axios
-              .get("http://localhost:5000/api/user/profile", {
-                withCredentials: true,
-                headers: {
-                  Authorization: `Bearer ${user.data.token}`,
-                },
-              })
-              .then((res) => {
-                setUserProfile(res.data)
-                navigate("/platform/dashboard")
-              })
-              .catch((error) => {
-                console.error("EERRRR:", error)
-              })
+            alert("User Created Successfully")
+            navigate("/platform/dashboard")
           }
         } catch (error) {
           setLoading(false)
