@@ -50,7 +50,7 @@ const FinishSignUp = () => {
                 navigate("/platform/dashboard")
               })
               .catch((error) => {
-                console.error("Error:", error)
+                console.error("EERRRR:", error)
               })
           }
         } catch (error) {
