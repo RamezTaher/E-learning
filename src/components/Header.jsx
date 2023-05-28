@@ -27,26 +27,15 @@ const Header = () => {
               Home
             </div>
           </Link>
-          <Link to={"/platform"}>
+          <Link to={"/platform/dashboard"}>
             <div
               className={`${
-                pathname === "/platform"
+                pathname === "/platform/dashboard" 
                   ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
                   : ""
               }`}
             >
               Platform
-            </div>
-          </Link>
-          <Link to={"/resources"}>
-            <div
-              className={`${
-                pathname === "/resources"
-                  ? "font-bold underline decoration-primary decoration-2 underline-offset-2 text-lg"
-                  : ""
-              }`}
-            >
-              Resources
             </div>
           </Link>
           <Link to={"/contact"}>
