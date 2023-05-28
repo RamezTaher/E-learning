@@ -37,12 +37,12 @@ const FinishSignUp = () => {
           })
           if (user) {
             setLoading(false)
-            setToken(token.data.token)
+            setToken(user.data.token)
             axios
               .get("http://localhost:5000/api/user/profile", {
                 withCredentials: true,
                 headers: {
-                  Authorization: `Bearer ${token.data.token}`,
+                  Authorization: `Bearer ${user.data.token}`,
                 },
               })
               .then((res) => {
