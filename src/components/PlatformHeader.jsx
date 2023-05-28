@@ -1,14 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { AiOutlineSearch } from "react-icons/ai"
 import { MdOutlineNotifications } from "react-icons/md"
 import { Link } from "react-router-dom"
 import { useLocalStorage } from "react-use"
+import { GetUser } from "../utils/api-interceptor"
 
 const PlatformHeader = ({ location, isSearch }) => {
-  const [userProfile, setUserProfile, removeUserProfile] = useLocalStorage(
-    "userProfile",
-    {}
-  )
+  const [user,setUser]=useState({})
+  useEffect(() => {
+    GetUser()
+      .then(({ data }) => {
+        setUser(data)
+      })
+      .catch((err) => console.log(err))
+  }, [window.localStorage.getItem("token")])
   return (
     <div className="flex justify-between items-center ">
       <div className="text-secondary text-2xl font-semibold">{location}</div>
@@ -27,7 +32,7 @@ const PlatformHeader = ({ location, isSearch }) => {
         <MdOutlineNotifications size={26} className="cursor-pointer" />
         <Link to={"/user/profile"}>
           <img
-            src={userProfile?.profileImage}
+            src={user?.profileImage}
             alt="user"
             className="w-12 h-12 rounded-full object-center object-cover"
           />
