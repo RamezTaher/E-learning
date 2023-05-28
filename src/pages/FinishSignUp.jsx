@@ -37,7 +37,7 @@ const FinishSignUp = () => {
           })
           if (user) {
             alert("User Created Successfully")
-            navigate("/platform/dashboard")
+            navigate("/auth/login")
           }
         } catch (error) {
           setLoading(false)
